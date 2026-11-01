@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>HeadHunter Challenge</title>
+<meta name="description" content="Test de 5–8 minutos que mide las habilidades de reclutadores y headhunters.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- Pantalla 1: Inicio -->
+  <section id="screen-start" class="screen active">
+    <div class="lang-switch">
+      <button id="lang-pl" class="lang-btn active" type="button">PL</button>
+      <button id="lang-es" class="lang-btn" type="button">ES</button>
+    </div>
+    <h1 class="logo">🎯 HeadHunter <span>Challenge</span></h1>
+    <p class="intro" data-i18n="intro"></p>
+    <form id="start-form" novalidate>
+      <label class="field">
+        <span data-i18n="nameLabel"></span>
+        <input type="text" id="input-name" autocomplete="name">
+      </label>
+      <label class="field">
+        <span data-i18n="emailLabel"></span>
+        <input type="email" id="input-email" autocomplete="email" required>
+      </label>
+      <label class="checkbox">
+        <input type="checkbox" id="consent-privacy">
+        <span><span data-i18n="consentPrivacy"></span>
+          <button type="button" id="open-privacy" class="link-btn" data-i18n="privacyLink"></button>
+        </span>
+      </label>
+      <label class="checkbox">
+        <input type="checkbox" id="consent-marketing">
+        <span data-i18n="consentMarketing"></span>
+      </label>
+      <p id="attempts-info" class="attempts-info"></p>
+      <button type="submit" id="btn-start" class="btn primary" data-i18n="startBtn" disabled></button>
+    </form>
+  </section>
+
+  <!-- Pantalla 2/3: Preguntas de opción múltiple -->
+  <section id="screen-quiz" class="screen">
+    <div class="progress"><div id="quiz-progress" class="progress-bar"></div></div>
+    <p id="quiz-level" class="level-label"></p>
+    <h2 id="quiz-question" class="question"></h2>
+    <div id="quiz-options" class="options"></div>
+    <div id="quiz-feedback" class="feedback hidden">
+      <p id="quiz-feedback-text"></p>
+      <button id="quiz-next" class="btn primary" type="button"></button>
+    </div>
+  </section>
+
+  <!-- Pantalla 4: Roleplay con IA -->
+  <section id="screen-roleplay" class="screen">
+    <div class="progress"><div id="roleplay-progress" class="progress-bar"></div></div>
+    <p class="level-label" data-i18n="level3Label"></p>
+    <h2 id="roleplay-question" class="question"></h2>
+    <blockquote id="roleplay-candidate" class="candidate-quote"></blockquote>
+    <textarea id="roleplay-answer" rows="5" maxlength="1000"></textarea>
+    <p class="char-counter"><span id="char-count">0</span>/1000</p>
+    <div id="roleplay-loading" class="loading hidden">
+      <div class="spinner"></div>
+      <p data-i18n="evaluating"></p>
+    </div>
+    <button id="btn-roleplay" class="btn primary" type="button" data-i18n="submitAnswer"></button>
+  </section>
+
+  <!-- Pantalla 5: Resultado -->
+  <section id="screen-result" class="screen">
+    <div class="badge">
+      <div id="result-score" class="score">0</div>
+      <div class="score-suffix">/100</div>
+      <div id="result-rank" class="rank"></div>
+    </div>
+    <div id="result-feedback" class="result-feedback"></div>
+    <button id="btn-copy" class="btn secondary" type="button" data-i18n="copyResult"></button>
+    <p id="copy-status" class="copy-status"></p>
+    <a id="cta-link" class="btn cta" href="#" data-i18n="cta"></a>
+  </section>
+
+  <!-- Modal de política de privacidad -->
+  <div id="privacy-modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <button id="close-privacy" class="modal-close" type="button" aria-label="Close">✕</button>
+      <div id="privacy-text"></div>
+    </div>
+  </div>
+
+</div>
+<script src="app.js"></script>
+</body>
+</html>
