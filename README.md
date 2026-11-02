@@ -5,13 +5,26 @@ Juego web estático (HTML + CSS + JS vanilla, sin frameworks ni build step) que 
 ## Estructura
 
 ```
-index.html      — sitio estático (pantallas, modal RGPD)
-styles.css      — tema oscuro verde + acento dorado
-app.js          — CONFIG, I18N (pl/es), flujo del juego, heurística demo
-worker/         — Cloudflare Worker que evalúa el nivel 3 con Mistral AI
+index.html      — 4 actos narrativos + epílogo + modal RGPD
+styles.css      — tema oscuro verde + dorado, Ken Burns, chat, transiciones
+app.js          — CONFIG, I18N (pl/es/en), flujo narrativo, heurística demo
+worker/         — Cloudflare Worker (Mistral AI): /api/grade, /api/candidate, /api/letter
   worker.js
   wrangler.toml
+assets/img/     — placeholders SVG + README con prompts de generación
+assets/audio/   — placeholders de audio + README
+tools/gen-audio.js — genera los clips con Voxtral TTS (clave por env, nunca en código)
 ```
+
+## Experiencia narrativa (4 actos + epílogo, 7–10 min)
+
+1. **Acto 1 — El Brief**: despacho de noche con efecto Ken Burns, audio del cliente con subtítulos visibles, elección sí/no (el "no" da giro humorístico y reinicia).
+2. **Acto 2 — La Búsqueda**: email del cliente renderizado como cliente de correo; elección de sourcing; feedback como respuesta del cliente.
+3. **Acto 3 — La Entrevista**: chat con avatar del candidato, indicador "escribiendo…", 2–3 mensajes que puntúa el proxy vía `/api/grade` y responde el candidato vía `/api/candidate` (persona evasiva definida en el system prompt).
+4. **Acto 4 — El Twist**: contraoferta urgente; decisión ética del jugador.
+5. **Epílogo — El Veredicto**: carta del cliente generada vía `/api/letter`, puntuación 0–100, badge, compartir y CTA.
+
+Rendimiento: lazy-load de imágenes de escenas (`loading="lazy"` + precarga manual al avanzar), preload del audio siguiente, todo el proyecto ~66 KB con placeholders (objetivo < 2.5 MB con assets reales).
 
 ## Despliegue
 

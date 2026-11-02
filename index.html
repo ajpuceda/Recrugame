@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>HeadHunter Challenge</title>
-<meta name="description" content="Test de 5–8 minutos que mide las habilidades de reclutadores y headhunters.">
+<meta name="description" content="A narrative hiring challenge in 4 acts. Can you find the unicorn candidate?">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div id="app">
 
-  <!-- Pantalla 1: Inicio -->
+  <!-- ============ START (RGPD intacto) ============ -->
   <section id="screen-start" class="screen active">
     <div class="lang-switch">
       <button id="lang-pl" class="lang-btn active" type="button">PL</button>
@@ -43,47 +43,122 @@
     </form>
   </section>
 
-  <!-- Pantalla 2/3: Preguntas de opción múltiple -->
-  <section id="screen-quiz" class="screen">
-    <div class="progress"><div id="quiz-progress" class="progress-bar"></div></div>
-    <p id="quiz-level" class="level-label"></p>
-    <h2 id="quiz-question" class="question"></h2>
-    <div id="quiz-options" class="options"></div>
-    <div id="quiz-feedback" class="feedback hidden">
-      <p id="quiz-feedback-text"></p>
-      <button id="quiz-next" class="btn primary" type="button"></button>
+  <!-- ============ ACTO 1: El Brief ============ -->
+  <section id="scene-act1" class="screen scene">
+    <div class="scene-bg kenburns"><img src="assets/img/office-night.svg" alt="" loading="eager"></div>
+    <div class="scene-overlay">
+      <p class="scene-kicker" data-i18n="act1Kicker"></p>
+      <h2 class="scene-title" data-i18n="act1Title"></h2>
+      <div class="audio-box">
+        <audio id="audio-brief" preload="none" src="assets/audio/client-brief.mp3"></audio>
+        <button id="btn-play-brief" class="btn small" type="button">▶ <span data-i18n="playBrief"></span></button>
+        <p id="subtitle-brief" class="subtitle" data-i18n="briefSubtitle"></p>
+      </div>
+      <p class="tension" data-i18n="act1Tension"></p>
+      <div class="choice-row">
+        <button id="btn-accept" class="btn primary half" type="button" data-i18n="acceptChallenge"></button>
+        <button id="btn-decline" class="btn ghost half" type="button" data-i18n="declineChallenge"></button>
+      </div>
+      <p id="decline-msg" class="decline-msg hidden"></p>
     </div>
   </section>
 
-  <!-- Pantalla 4: Roleplay con IA -->
-  <section id="screen-roleplay" class="screen">
-    <div class="progress"><div id="roleplay-progress" class="progress-bar"></div></div>
-    <p class="level-label" data-i18n="level3Label"></p>
-    <h2 id="roleplay-question" class="question"></h2>
-    <blockquote id="roleplay-candidate" class="candidate-quote"></blockquote>
-    <textarea id="roleplay-answer" rows="5" maxlength="1000"></textarea>
-    <p class="char-counter"><span id="char-count">0</span>/1000</p>
-    <div id="roleplay-loading" class="loading hidden">
-      <div class="spinner"></div>
-      <p data-i18n="evaluating"></p>
+  <!-- ============ ACTO 2: La Búsqueda ============ -->
+  <section id="scene-act2" class="screen scene">
+    <div class="scene-bg kenburns"><img src="assets/img/skyline-night.svg" alt="" loading="lazy"></div>
+    <div class="scene-overlay">
+      <p class="scene-kicker" data-i18n="act2Kicker"></p>
+      <div class="mail-client">
+        <div class="mail-head">
+          <span class="mail-dot"></span>
+          <div>
+            <p class="mail-from">anna.kowalska@clientcorp.pl</p>
+            <p class="mail-subject" data-i18n="act2MailSubject"></p>
+          </div>
+        </div>
+        <div class="mail-body" data-i18n="act2MailBody"></div>
+      </div>
+      <h2 class="question" data-i18n="question1"></h2>
+      <div id="act2-options" class="options"></div>
+      <div id="act2-client-reply" class="mail-client reply hidden">
+        <div class="mail-head"><span class="mail-dot gold"></span>
+          <div><p class="mail-from">anna.kowalska@clientcorp.pl</p><p class="mail-subject" data-i18n="clientReplySubject"></p></div>
+        </div>
+        <div id="act2-client-text" class="mail-body"></div>
+        <button id="act2-next" class="btn primary" type="button" data-i18n="nextBtn"></button>
+      </div>
     </div>
-    <button id="btn-roleplay" class="btn primary" type="button" data-i18n="submitAnswer"></button>
   </section>
 
-  <!-- Pantalla 5: Resultado -->
-  <section id="screen-result" class="screen">
-    <div class="badge">
-      <div id="result-score" class="score">0</div>
-      <div class="score-suffix">/100</div>
-      <div id="result-rank" class="rank"></div>
+  <!-- ============ ACTO 3: La Entrevista (chat) ============ -->
+  <section id="scene-act3" class="screen scene">
+    <div class="scene-bg kenburns"><img src="assets/img/office-desk.svg" alt="" loading="lazy"></div>
+    <div class="scene-overlay">
+      <p class="scene-kicker" data-i18n="act3Kicker"></p>
+      <div class="chat-wrap">
+        <div class="chat-side">
+          <img id="candidate-avatar" src="assets/img/candidate.svg" alt="candidate" loading="lazy">
+          <p class="chat-name" data-i18n="candidateName"></p>
+          <p class="chat-role">Senior Data Engineer</p>
+        </div>
+        <div class="chat-main">
+          <div id="chat-log" class="chat-log"></div>
+          <p id="typing" class="typing hidden">… <span data-i18n="typing"></span></p>
+          <div class="chat-input-row">
+            <textarea id="chat-input" rows="2" maxlength="500"></textarea>
+            <button id="chat-send" class="btn small primary" type="button" data-i18n="sendMsg"></button>
+          </div>
+          <p class="char-counter"><span id="chat-count">0</span>/500 · <span id="msg-count">0</span>/3 <span data-i18n="messagesLabel"></span></p>
+        </div>
+      </div>
+      <button id="act3-finish" class="btn primary hidden" type="button" data-i18n="finishInterview"></button>
     </div>
-    <div id="result-feedback" class="result-feedback"></div>
-    <button id="btn-copy" class="btn secondary" type="button" data-i18n="copyResult"></button>
-    <p id="copy-status" class="copy-status"></p>
-    <a id="cta-link" class="btn cta" href="#" data-i18n="cta"></a>
   </section>
 
-  <!-- Modal de política de privacidad -->
+  <!-- ============ ACTO 4: El Twist ============ -->
+  <section id="scene-act4" class="screen scene">
+    <div class="scene-bg kenburns"><img src="assets/img/rival-office.svg" alt="" loading="lazy"></div>
+    <div class="scene-overlay">
+      <p class="scene-kicker" data-i18n="act4Kicker"></p>
+      <div class="mail-client urgent">
+        <div class="mail-head"><span class="mail-dot red blink"></span>
+          <div><p class="mail-from">urgent@talentalert.io</p><p class="mail-subject" data-i18n="act4MailSubject"></p></div>
+        </div>
+        <div class="mail-body" data-i18n="act4MailBody"></div>
+      </div>
+      <h2 class="question" data-i18n="question4"></h2>
+      <div id="act4-options" class="options"></div>
+      <div id="act4-reply" class="feedback hidden">
+        <p id="act4-reply-text"></p>
+        <button id="act4-next" class="btn primary" type="button" data-i18n="nextBtn"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EPÍLOGO: El Veredicto ============ -->
+  <section id="scene-epilogue" class="screen scene">
+    <div class="scene-bg kenburns"><img src="assets/img/dawn-skyline.svg" alt="" loading="lazy"></div>
+    <div class="scene-overlay">
+      <p class="scene-kicker" data-i18n="epilogueKicker"></p>
+      <div class="mail-client letter">
+        <div class="mail-head"><span class="mail-dot gold"></span>
+          <div><p class="mail-from">anna.kowalska@clientcorp.pl</p><p class="mail-subject" data-i18n="verdictSubject"></p></div>
+        </div>
+        <div id="verdict-letter" class="mail-body letter-body"><div class="spinner inline"></div></div>
+      </div>
+      <div class="badge">
+        <div id="result-score" class="score">0</div>
+        <div class="score-suffix">/100</div>
+        <div id="result-rank" class="rank"></div>
+      </div>
+      <div id="result-feedback" class="result-feedback"></div>
+      <button id="btn-copy" class="btn secondary" type="button" data-i18n="copyResult"></button>
+      <p id="copy-status" class="copy-status"></p>
+      <a id="cta-link" class="btn cta" href="#" data-i18n="cta"></a>
+    </div>
+  </section>
+
+  <!-- Modal de política de privacidad (RGPD) -->
   <div id="privacy-modal" class="modal hidden" role="dialog" aria-modal="true">
     <div class="modal-content">
       <button id="close-privacy" class="modal-close" type="button" aria-label="Close">✕</button>
