@@ -122,6 +122,63 @@ const I18N = {
 <p><strong>Tus derechos:</strong> acceso, rectificación, supresión, limitación, oposición y portabilidad de tus datos.</p>
 <p><strong>Evaluación con IA:</strong> la respuesta del nivel 3 se evalúa con inteligencia artificial; los datos son procesados por el proveedor de inferencia (Mistral AI) según su política de privacidad.</p>
 <p><strong>Retirada del consentimiento:</strong> en cualquier momento puedes retirarlo enviando un correo a [EMAIL].</p>`
+  },
+  en: {
+    intro: "A 5–8 minute test that measures the skills of recruiters and headhunters. Take the challenge and see how well you can find the best candidates.",
+    nameLabel: "Name (optional)",
+    emailLabel: "Email address (required)",
+    consentPrivacy: "I accept the privacy policy and the processing of my data to receive my result.",
+    privacyLink: "View privacy policy",
+    consentMarketing: "I want to receive related content and collaboration offers (optional).",
+    startBtn: "Start the challenge",
+    attemptsLeft: "Attempts left for this email: {n}",
+    attemptsExhausted: "You have already used all attempts for this email address.",
+    level1Label: "Level 1 — Sourcing",
+    level2Label: "Level 2 — Screening",
+    level3Label: "Level 3 — AI Roleplay",
+    question1: "Your client needs a senior Data Engineer with Apache Spark experience for a role in Warsaw. LinkedIn shows no active candidates. Which Google X-Ray search is the best?",
+    options1: [
+      "site:pl.linkedin.com/in (\"data engineer\" OR \"inżynier danych\") \"Spark\" (Warszawa OR \"remote\")",
+      "\"data engineer\" Spark (no site or location operators)",
+      "site:pl.linkedin.com/in \"Java developer\" Warszawa",
+      "\"data engineer Warszawa senior\""
+    ],
+    feedback1: "Option (a) wins: X-Ray (site: operator) + local-language synonyms (\"inżynier danych\") + required technology + location or remote. The others lose either reach or precision.",
+    question2: "You have 40 CVs for a specialist vacancy and 20 minutes. Which screening best predicts the candidate's real performance?",
+    options2: [
+      "Years of experience",
+      "University and degrees",
+      "Specific technical depth questions tailored to each CV",
+      "Cover letter"
+    ],
+    feedback2: "Verifiable technical depth predicts better than status signals like university or years of experience. Cover letters are a weak predictor.",
+    question3: "You are interviewing a candidate for a senior role. They say: \"In my last project I single-handedly led the full system migration\". Write your next question (1–3 sentences).",
+    candidateQuote: "\"In my last project I single-handedly led the full system migration\".",
+    evaluating: "The AI is evaluating your answer…",
+    submitAnswer: "Submit answer",
+    nextBtn: "Next",
+    copyResult: "Copy result",
+    copied: "Copied to clipboard!",
+    copyFallback: "Copy it manually: {text}",
+    cta: "Struggling to fill specialist roles? Let's talk",
+    shareText: "🎯 I scored {score}/100 in the HeadHunter Challenge. Can you beat me? {url}",
+    resultTitle: "Your result",
+    levelNames: ["Scout Trainee", "Junior Hunter", "HeadHunter Pro", "Eagle Eyes"],
+    feedbackTitle1: "Level 1 — Sourcing",
+    feedbackTitle2: "Level 2 — Screening",
+    feedbackTitle3: "Level 3 — Roleplay",
+    feedbackCorrect: "Well done! Correct answer.",
+    feedbackWrong: "That was not the best answer.",
+    feedbackAiFallback: "Could not reach the grading server — a neutral average score was awarded.",
+    privacyTitle: "Privacy Policy",
+    privacyBody: `<p><strong>Data controller:</strong> [TU EMPRESA], contact email: [EMAIL].</p>
+<p><strong>Data collected:</strong> name (optional), email address, test answers and timestamps.</p>
+<p><strong>Purposes:</strong> sending your test result, handling your request and — only with separate consent — sending marketing content.</p>
+<p><strong>Legal basis:</strong> consent (Art. 6.1.a GDPR).</p>
+<p><strong>Retention:</strong> 24 months or until consent is withdrawn.</p>
+<p><strong>Your rights:</strong> access, rectification, erasure, restriction, objection and data portability.</p>
+<p><strong>AI grading:</strong> the level 3 answer is graded by artificial intelligence; data is processed by the inference provider (Mistral AI) under its privacy policy.</p>
+<p><strong>Withdrawing consent:</strong> at any time you can withdraw consent by emailing [EMAIL].</p>`
   }
 };
 
@@ -138,6 +195,7 @@ function applyLang() {
   document.querySelectorAll("[data-i18n]").forEach(el => { el.textContent = t(el.dataset.i18n); });
   document.getElementById("lang-pl").classList.toggle("active", lang === "pl");
   document.getElementById("lang-es").classList.toggle("active", lang === "es");
+  document.getElementById("lang-en").classList.toggle("active", lang === "en");
   document.getElementById("privacy-text").innerHTML =
     `<h2>${t("privacyTitle")}</h2>` + t("privacyBody");
   updateStartButton();
@@ -191,6 +249,7 @@ privacyChk.addEventListener("change", updateStartButton);
 
 document.getElementById("lang-pl").addEventListener("click", () => { lang = "pl"; localStorage.setItem("hh_lang", lang); applyLang(); });
 document.getElementById("lang-es").addEventListener("click", () => { lang = "es"; localStorage.setItem("hh_lang", lang); applyLang(); });
+document.getElementById("lang-en").addEventListener("click", () => { lang = "en"; localStorage.setItem("hh_lang", lang); applyLang(); });
 
 document.getElementById("start-form").addEventListener("submit", e => {
   e.preventDefault();
@@ -316,7 +375,9 @@ function demoHeuristic(answer) {
     score,
     feedback: lang === "es"
       ? `Puntuación demo (heurística local): ${score}/10. Busca datos concretos (equipo, cifras, resultado) y formula una pregunta de seguimiento.`
-      : `Wynik demo (heurystyka lokalna): ${score}/10. Szukaj konkretnych danych (zespół, liczby, wynik) i zadawaj pytanie uzupełniające.`
+      : lang === "en"
+        ? `Demo score (local heuristic): ${score}/10. Look for concrete data (team, numbers, outcome) and ask a follow-up question.`
+        : `Wynik demo (heurystyka lokalna): ${score}/10. Szukaj konkretnych danych (zespół, liczby, wynik) i zadawaj pytanie uzupełniające.`
   };
 }
 

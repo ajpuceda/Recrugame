@@ -114,7 +114,7 @@ export default {
     }
 
     try {
-      const result = await gradeWithMistral(answer.trim(), lang === "es" ? "es" : "pl", env.MISTRAL_API_KEY);
+      const result = await gradeWithMistral(answer.trim(), ["pl", "es", "en"].includes(lang) ? lang : "pl", env.MISTRAL_API_KEY);
       return new Response(JSON.stringify(result), { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } });
     } catch (err) {
       return new Response(JSON.stringify({ error: "Grading failed" }), { status: 502, headers: { ...corsHeaders, "Content-Type": "application/json" } });
