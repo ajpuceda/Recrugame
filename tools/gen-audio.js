@@ -1,5 +1,5 @@
 // Genera los clips de audio del juego con Voxtral TTS (Mistral).
-// Uso:  MISTRAL_API_KEY=tu_clave node tools/gen-audio.js
+// Uso (Windows):  set MISTRAL_API_KEY=tu_clave   y luego:  node tools/gen-audio.js
 // La clave NUNCA se escribe en el código ni se commitea.
 //
 // CORREGIDO (v2):
@@ -7,7 +7,6 @@
 //  - voice_id (no "voice"), elegido de la librería de voces:
 //    https://docs.mistral.ai/studio/audio/text-to-speech/voices
 //  - la API devuelve JSON con audio_data en base64 → hay que decodificar
-//  - texto del brief en POLACO (el juego está en PL por defecto)
 
 import { writeFileSync, mkdirSync } from "fs";
 import { dirname, join } from "path";
@@ -22,18 +21,15 @@ if (!API_KEY) {
 const OUT = join(dirname(fileURLToPath(import.meta.url)), "..", "assets", "audio");
 mkdirSync(OUT, { recursive: true });
 
-// Elige voces de la librería: https://docs.mistral.ai/studio/audio/text-to-speech/voices
-// Sustituye las de abajo por voces polacas si la librería las ofrece (Voxtral 3, 35+ idiomas).
+// Voz de ejemplo; sustitúyela por una polaca si la librería la ofrece:
 const CLIPS = [
   {
     file: "client-brief.mp3",
-    // Voz del cliente (Anna): profesional, con urgencia
     voice_id: "gb_jane_neutral",
     text: "Cześć! Potrzebuję senior Data Engineera ze Sparkiem dla Warszawy, na trzy tygodnie — a LinkedIn jest pusty. Znajdziesz kogoś?"
   },
   {
     file: "candidate-lines.mp3",
-    // Voz del candidato (Marek): tranquila, evasiva
     voice_id: "gb_jane_neutral",
     text: "W ostatnim projekcie samodzielnie przeprowadziłem pełną migrację systemu. Był to duży sukces dla całego zespołu."
   }
