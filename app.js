@@ -217,7 +217,7 @@ function renderQuiz() {
   const q = QUIZ[quizIndex];
   document.getElementById("quiz-level").textContent = t(q.labelKey);
   document.getElementById("quiz-question").textContent = t(q.questionKey);
-  document.getElementById("quiz-progress").style.width = (quizIndex / 3 * 100) + "%";
+  document.getElementById("quiz-progress").style.width = ((quizIndex + 1) / 3 * 100) + "%";
   document.getElementById("quiz-feedback").classList.add("hidden");
   const opts = I18N[lang][q.optionsKey];
   const container = document.getElementById("quiz-options");
@@ -341,13 +341,12 @@ function showResult() {
   document.getElementById("result-rank").textContent = t("levelNames")[rankFor(total)];
   const fb = document.getElementById("result-feedback");
   fb.innerHTML = "";
-  [["feedbackTitle1", "level1", answers.level1 === 1 ? t("feedbackCorrect") : t("feedbackWrong")],
-   ["feedbackTitle2", "level2", answers.level2 === 1 ? t("feedbackCorrect") : t("feedbackWrong")],
-   ["feedbackTitle3", "level3", ""]].forEach(([titleKey, key, extra]) => {
+  [["feedbackTitle1", "level1"],
+   ["feedbackTitle2", "level2"],
+   ["feedbackTitle3", "level3"]].forEach(([titleKey, key]) => {
     const div = document.createElement("div");
     div.className = "result-item";
-    const text = key === "level3" ? feedbacks[key] : (extra + " " + feedbacks[key]);
-    div.innerHTML = `<span class="ri-title">${t(titleKey)}</span>${text}`;
+    div.innerHTML = `<span class="ri-title">${t(titleKey)}</span>${feedbacks[key]}`;
     fb.appendChild(div);
   });
   document.getElementById("cta-link").href = CONFIG.CTA_URL;
@@ -380,7 +379,7 @@ function sendLead(score10) {
   fetch(CONFIG.LEAD_ENDPOINT, {
     method: "POST",
     mode: "no-cors",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "text/plain;charset=UTF-8" },
     body: JSON.stringify(payload)
   }).catch(() => {});
 }

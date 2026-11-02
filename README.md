@@ -25,6 +25,8 @@ worker/         — Cloudflare Worker que evalúa el nivel 3 con Mistral AI
    wrangler deploy
    ```
 3. **Configura el frontend**: en `app.js`, pon `DEMO_MODE: false` y la URL del worker en `CONFIG.API_ENDPOINT` (p. ej. `https://headhunter-grader.tu-cuenta.workers.dev/api/grade`). Configura también `CTA_URL` y `LEAD_ENDPOINT`.
+
+   > Antes de lanzar la campaña, haz una prueba real de recepción del lead: envía un formulario de prueba y verifica que el registro llegue correctamente a tu endpoint (Tally/Supabase). El envío usa `mode: "no-cors"` con `Content-Type: text/plain;charset=UTF-8`, así que si el body no llega, los leads se perderían silenciosamente.
 4. **Clave de Mistral**: crea una clave de API de Mistral solo para este proyecto en la consola de Mistral y fija un límite de gasto mensual antes de lanzar la campaña.
 
 ## Notas de seguridad

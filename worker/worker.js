@@ -77,8 +77,11 @@ export default {
   async fetch(request, env) {
     const origin = request.headers.get("Origin") || "";
     const allowed = env.ALLOWED_ORIGIN || "";
+    if (!allowed) {
+      return new Response(JSON.stringify({ error: "Forbidden: ALLOWED_ORIGIN not configured" }), { status: 403, headers: { "Content-Type": "application/json" } });
+    }
     const corsHeaders = {
-      "Access-Control-Allow-Origin": allowed && origin === allowed ? allowed : "null",
+      "Access-Control-Allow-Origin": origin === allowed ? allowed : "null",
       "Access-Control-Allow-Methods": "POST, OPTIONS",
       "Access-Control-Allow-Headers": "Content-Type"
     };
@@ -89,7 +92,7 @@ export default {
     if (request.method !== "POST" || !new URL(request.url).pathname.endsWith("/api/grade")) {
       return new Response(JSON.stringify({ error: "Not found" }), { status: 404, headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
-    if (allowed && origin !== allowed) {
+    if (origin !== allowed) {
       return new Response(JSON.stringify({ error: "Forbidden origin" }), { status: 403, headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
 
