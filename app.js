@@ -42,6 +42,8 @@ const I18N = {
     ],
     clientReplyCorrect: "Świetnie — X-Ray z synonimami w języku lokalnym i operatorem site: daje największy zasięg precyzyjnych profili. Zaczynamy.",
     clientReplyWrong: "Hmm… to wyszukanie albo traci zasięg, albo precyzję. Spróbuj: operator site: + synonimy lokalne + technologia + lokalizacja.",
+    act2AudioLabel: "Odsłuchaj wiadomość od Anny",
+    act2Subtitle: "„Wysyłam ci szczegóły mailem. Trzy tygodnie, start w Warszawie. LinkedIn nic nie pokazuje — spróbuj X-Ray w Google.”",
     act3Kicker: "Akt 3 · Rozmowa",
     candidateName: "Marek — kandydat",
     typing: "Marek pisze…",
@@ -49,9 +51,13 @@ const I18N = {
     messagesLabel: "wiadomości",
     finishInterview: "Zakończ rozmowę",
     candidateGreeting: "Dzień dobry! Słyszałem, że szukacie kogoś do migracji systemu. W ostatnim projekcie samodzielnie przeprowadziłem pełną migrację.",
+    act3AudioLabel: "Odsłuchaj wiadomość od Marka",
+    act3Subtitle: "„Dzień dobry! Słyszałem, że szukacie kogoś do migracji systemu. W ostatnim projekcie samodzielnie przeprowadziłem pełną migrację.”",
     act4Kicker: "Akt 4 · Zwrot akcji",
     act4MailSubject: "PILNE: Marek dostał konkurencyjną ofertę",
     act4MailBody: "Marek właśnie dostał ofertę od konkurencji z 20% wyższą pensją. Ma 24h na decyzję.\nCo robisz jako jego doradca?",
+    act4AudioLabel: "Odsłuchaj alert",
+    act4Subtitle: "„Pilne! Marek dostał ofertę od konkurencji, o dwadzieścia procent wyższą. Ma dwadzieścia cztery godziny na decyzję.”",
     question4: "Jak odpowiadasz Markowi?",
     options4: [
       "„ Gratulacje oferty! Powodzenia w nowej pracy.”",
@@ -62,6 +68,8 @@ const I18N = {
     act4Feedback: "Jako doradca pokazujesz wartość poza pensją: kultura, autonomia, projekt. To buduje lojalność kandydata — i marki klienta.",
     epilogueKicker: "Epilog · Werdykt",
     verdictSubject: "Werdykt od klienta",
+    epilogueAudioLabel: "Odsłuchaj werdykt",
+    epilogueSubtitle: "„Dziękuję za przeprowadzenie tej rekrutacji. Twój sposób myślenia był bardzo wartościowy — wrócimy do Ciebie przy następnej trudnej obsadzie.”",
     nextBtn: "Dalej",
     copyResult: "Kopiuj wynik",
     copied: "Skopiowano do schowka!",
@@ -118,6 +126,8 @@ const I18N = {
     ],
     clientReplyCorrect: "Perfecto: X-Ray con sinónimos en el idioma local y operador site: da el mayor alcance de perfiles precisos. Empezamos.",
     clientReplyWrong: "Mmm… esa búsqueda pierde alcance o precisión. Prueba: operador site: + sinónimos locales + tecnología + ubicación.",
+    act2AudioLabel: "Escuchar el mensaje de Anna",
+    act2Subtitle: "«Te envío los detalles por correo. Tres semanas, incorporación en Varsovia. LinkedIn no muestra nada — prueba con X-Ray en Google».",
     act3Kicker: "Acto 3 · La entrevista",
     candidateName: "Marek — candidato",
     typing: "Marek está escribiendo…",
@@ -125,9 +135,13 @@ const I18N = {
     messagesLabel: "mensajes",
     finishInterview: "Terminar entrevista",
     candidateGreeting: "¡Buenos días! He oído que buscáis a alguien para una migración de sistema. En mi último proyecto lideré yo solo la migración completa.",
+    act3AudioLabel: "Escuchar el mensaje de Marek",
+    act3Subtitle: "«¡Buenos días! He oído que buscáis a alguien para una migración de sistema. En mi último proyecto lideré yo solo la migración completa».",
     act4Kicker: "Acto 4 · El giro",
     act4MailSubject: "URGENTE: Marek ha recibido una contraoferta",
     act4MailBody: "Marek acaba de recibir una oferta de la competencia con un 20 % más de salario. Tiene 24 h para decidir.\n¿Qué haces como su asesor?",
+    act4AudioLabel: "Escuchar la alerta",
+    act4Subtitle: "«Urgente: Marek acaba de recibir una oferta de la competencia, un veinte por ciento más alta. Tiene veinticuatro horas para decidir».",
     question4: "¿Cómo respondes a Marek?",
     options4: [
       "«¡Felicidades por la oferta! Buena suerte en el nuevo trabajo».",
@@ -138,6 +152,8 @@ const I18N = {
     act4Feedback: "Como asesor demuestras valor más allá del salario: cultura, autonomía, proyecto. Eso genera lealtad del candidato — y de la marca del cliente.",
     epilogueKicker: "Epílogo · El veredicto",
     verdictSubject: "Veredicto del cliente",
+    epilogueAudioLabel: "Escuchar el veredicto",
+    epilogueSubtitle: "«Gracias por liderar este proceso de selección. Tu forma de pensar aportó mucho valor — volveremos a ti en la próxima vacante difícil».",
     nextBtn: "Siguiente",
     copyResult: "Copiar resultado",
     copied: "¡Copiado al portapapeles!",
@@ -194,6 +210,8 @@ const I18N = {
     ],
     clientReplyCorrect: "Great — X-Ray with local-language synonyms and a site: operator gives the widest reach of precise profiles. Let's go.",
     clientReplyWrong: "Hmm… that search loses either reach or precision. Try: site: operator + local synonyms + technology + location.",
+    act2AudioLabel: "Play Anna's message",
+    act2Subtitle: "\"I'm emailing you the details. Three weeks, starting in Warsaw. LinkedIn shows nothing — try an X-Ray search on Google.\"",
     act3Kicker: "Act 3 · The interview",
     candidateName: "Marek — candidate",
     typing: "Marek is typing…",
@@ -201,9 +219,13 @@ const I18N = {
     messagesLabel: "messages",
     finishInterview: "End interview",
     candidateGreeting: "Good morning! I heard you're looking for someone for a system migration. In my last project I single-handedly led the full migration.",
+    act3AudioLabel: "Play Marek's message",
+    act3Subtitle: "\"Good morning! I heard you're looking for someone for a system migration. In my last project I single-handedly led the full migration.\"",
     act4Kicker: "Act 4 · The twist",
     act4MailSubject: "URGENT: Marek received a counter-offer",
     act4MailBody: "Marek just received an offer from a competitor with a 20% higher salary. He has 24h to decide.\nWhat do you do as his advisor?",
+    act4AudioLabel: "Play the alert",
+    act4Subtitle: "\"Urgent! Marek just received an offer from a competitor, twenty percent higher. He has twenty-four hours to decide.\"",
     question4: "How do you reply to Marek?",
     options4: [
       "\"Congrats on the offer! Good luck in the new job.\"",
@@ -214,6 +236,8 @@ const I18N = {
     act4Feedback: "As an advisor you show value beyond salary: culture, autonomy, project. That builds candidate loyalty — and the client's brand.",
     epilogueKicker: "Epilogue · The verdict",
     verdictSubject: "Verdict from the client",
+    epilogueAudioLabel: "Play the verdict",
+    epilogueSubtitle: "\"Thank you for running this hiring process. Your way of thinking added real value — we'll come back to you for the next hard-to-fill role.\"",
     nextBtn: "Next",
     copyResult: "Copy result",
     copied: "Copied to clipboard!",
@@ -263,16 +287,18 @@ function applyLang() {
 }
 
 function showScreen(id) {
+  stopSceneAudio();
   document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
   window.scrollTo(0, 0);
+  playSceneAudio(id);
 }
 
 /* ============ START (RGPD e intentos intactos) ============ */
 const emailInput = document.getElementById("input-email");
 const privacyChk = document.getElementById("consent-privacy");
 
-function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }
+function isValidEmail(v) { return /^[^\s@]+@[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }
 
 function getAttempts(email) {
   try { return JSON.parse(localStorage.getItem("hh_attempts") || "{}")[email] || 0; }
@@ -311,19 +337,55 @@ document.getElementById("start-form").addEventListener("submit", e => {
   const email = emailInput.value.trim().toLowerCase();
   if (!isValidEmail(email) || !privacyChk.checked || getAttempts(email) >= CONFIG.MAX_ATTEMPTS) return;
   incrementAttempts(email);
-  preloadNextAudio();
+  preloadClip("act2");
   showScreen("scene-act1");
 });
 
-/* ============ ACTO 1 ============ */
-const briefAudio = document.getElementById("audio-brief");
-document.getElementById("btn-play-brief").addEventListener("click", () => {
-  briefAudio.play().catch(() => {});
-});
-briefAudio.addEventListener("play", () => { document.getElementById("subtitle-brief").style.opacity = 1; });
-briefAudio.addEventListener("ended", () => { document.getElementById("subtitle-brief").style.opacity = .7; });
+/* ============ AUDIO por escena (autoplay + botón de repetición) ============ */
+const sceneAudio = document.getElementById("scene-audio");
+const audioAutoplayed = new Set();
 
-document.getElementById("btn-accept").addEventListener("click", () => { preloadSceneImg("assets/img/skyline-night.svg"); showScreen("scene-act2"); });
+function clipSrc(clip) { return "assets/audio/" + lang + "/" + clip + ".mp3"; }
+
+function setPlayingUI(on) {
+  const box = document.querySelector(".screen.active .audio-box");
+  if (!box) return;
+  box.classList.toggle("playing", on);
+  const icon = box.querySelector(".play-icon");
+  if (icon) icon.textContent = on ? "⏸" : "▶";
+}
+
+function stopSceneAudio() {
+  try { sceneAudio.pause(); } catch (e) {}
+  setPlayingUI(false);
+}
+
+function playClip(clip) {
+  stopSceneAudio();
+  sceneAudio.src = clipSrc(clip);
+  sceneAudio.play().catch(() => { /* si el navegador lo bloquea, queda el botón ▶ */ });
+}
+
+function playSceneAudio(sceneId) {
+  const box = document.querySelector("#" + sceneId + " .audio-box");
+  if (!box) return;
+  const clip = box.dataset.audio;
+  if (!audioAutoplayed.has(clip)) {
+    audioAutoplayed.add(clip);
+    playClip(clip);
+  }
+}
+
+document.querySelectorAll(".audio-box").forEach(box => {
+  const btn = box.querySelector(".audio-play");
+  if (btn) btn.addEventListener("click", () => playClip(box.dataset.audio));
+});
+
+sceneAudio.addEventListener("play", () => setPlayingUI(true));
+sceneAudio.addEventListener("pause", () => setPlayingUI(false));
+sceneAudio.addEventListener("ended", () => setPlayingUI(false));
+
+document.getElementById("btn-accept").addEventListener("click", () => { preloadSceneImg("assets/img/night-search.svg"); preloadClip("act2"); showScreen("scene-act2"); });
 document.getElementById("btn-decline").addEventListener("click", () => {
   const msg = document.getElementById("decline-msg");
   msg.textContent = t("declineMsg");
@@ -332,10 +394,7 @@ document.getElementById("btn-decline").addEventListener("click", () => {
 });
 
 function preloadSceneImg(src) { const img = new Image(); img.src = src; }
-function preloadNextAudio() {
-  if (!CONFIG.DEMO_MODE) return;
-  const a = new Audio(); a.preload = "auto"; a.src = "assets/audio/candidate-lines.mp3";
-}
+function preloadClip(clip) { const a = new Audio(); a.preload = "auto"; a.src = clipSrc(clip); }
 
 /* ============ ACTO 2 ============ */
 const ACT2_OPTIONS = I18N.pl.options1.map((_, i) => i);
@@ -366,8 +425,9 @@ function answerAct2(idx) {
   document.getElementById("act2-client-text").textContent = feedbacks.act2;
   document.getElementById("act2-client-reply").classList.remove("hidden");
   document.getElementById("act2-next").onclick = () => {
-    preloadSceneImg("assets/img/office-desk.svg");
+    preloadSceneImg("assets/img/video-call.svg");
     preloadSceneImg("assets/img/candidate.svg");
+    preloadClip("act3");
     startAct3();
   };
 }
@@ -428,7 +488,8 @@ document.getElementById("chat-send").addEventListener("click", async () => {
 });
 
 document.getElementById("act3-finish").addEventListener("click", () => {
-  preloadSceneImg("assets/img/rival-office.svg");
+  preloadSceneImg("assets/img/storm-city.svg");
+  preloadClip("act4");
   renderAct4();
   showScreen("scene-act4");
 });
@@ -514,6 +575,7 @@ function answerAct4(idx) {
   document.getElementById("act4-reply").classList.remove("hidden");
   document.getElementById("act4-next").onclick = () => {
     preloadSceneImg("assets/img/dawn-skyline.svg");
+    preloadClip("epilogue");
     showEpilogue();
   };
 }
@@ -560,7 +622,14 @@ async function showEpilogue() {
       letter = data.letter || t("demoLetter");
     } catch { letter = t("demoLetter"); }
   }
-  letterEl.textContent = letter;
+  letterEl.textContent = "";
+  letterEl.classList.add("typing");
+  let li = 0;
+  const tw = setInterval(() => {
+    li++;
+    letterEl.textContent = letter.slice(0, li);
+    if (li >= letter.length) { clearInterval(tw); letterEl.classList.remove("typing"); }
+  }, 16);
   sendLead(total);
 }
 
