@@ -11,36 +11,39 @@
 <div id="app">
 
   <!-- ============ START (RGPD intacto) ============ -->
-  <section id="screen-start" class="screen active">
-    <div class="lang-switch">
-      <button id="lang-pl" class="lang-btn active" type="button">PL</button>
-      <button id="lang-es" class="lang-btn" type="button">ES</button>
-      <button id="lang-en" class="lang-btn" type="button">EN</button>
+  <section id="screen-start" class="screen scene active">
+    <div class="scene-bg kenburns"><img src="assets/img/start-hero.svg" alt="" loading="eager"></div>
+    <div class="scene-overlay">
+      <div class="lang-switch">
+        <button id="lang-pl" class="lang-btn active" type="button">PL</button>
+        <button id="lang-es" class="lang-btn" type="button">ES</button>
+        <button id="lang-en" class="lang-btn" type="button">EN</button>
+      </div>
+      <h1 class="logo">🎯 HeadHunter <span>Challenge</span></h1>
+      <p class="intro" data-i18n="intro"></p>
+      <form id="start-form" novalidate>
+        <label class="field">
+          <span data-i18n="nameLabel"></span>
+          <input type="text" id="input-name" autocomplete="name">
+        </label>
+        <label class="field">
+          <span data-i18n="emailLabel"></span>
+          <input type="email" id="input-email" autocomplete="email" required>
+        </label>
+        <label class="checkbox">
+          <input type="checkbox" id="consent-privacy">
+          <span><span data-i18n="consentPrivacy"></span>
+            <button type="button" id="open-privacy" class="link-btn" data-i18n="privacyLink"></button>
+          </span>
+        </label>
+        <label class="checkbox">
+          <input type="checkbox" id="consent-marketing">
+          <span data-i18n="consentMarketing"></span>
+        </label>
+        <p id="attempts-info" class="attempts-info"></p>
+        <button type="submit" id="btn-start" class="btn primary" data-i18n="startBtn" disabled></button>
+      </form>
     </div>
-    <h1 class="logo">🎯 HeadHunter <span>Challenge</span></h1>
-    <p class="intro" data-i18n="intro"></p>
-    <form id="start-form" novalidate>
-      <label class="field">
-        <span data-i18n="nameLabel"></span>
-        <input type="text" id="input-name" autocomplete="name">
-      </label>
-      <label class="field">
-        <span data-i18n="emailLabel"></span>
-        <input type="email" id="input-email" autocomplete="email" required>
-      </label>
-      <label class="checkbox">
-        <input type="checkbox" id="consent-privacy">
-        <span><span data-i18n="consentPrivacy"></span>
-          <button type="button" id="open-privacy" class="link-btn" data-i18n="privacyLink"></button>
-        </span>
-      </label>
-      <label class="checkbox">
-        <input type="checkbox" id="consent-marketing">
-        <span data-i18n="consentMarketing"></span>
-      </label>
-      <p id="attempts-info" class="attempts-info"></p>
-      <button type="submit" id="btn-start" class="btn primary" data-i18n="startBtn" disabled></button>
-    </form>
   </section>
 
   <!-- ============ ACTO 1: El Brief ============ -->
@@ -49,10 +52,9 @@
     <div class="scene-overlay">
       <p class="scene-kicker" data-i18n="act1Kicker"></p>
       <h2 class="scene-title" data-i18n="act1Title"></h2>
-      <div class="audio-box">
-        <audio id="audio-brief" preload="none" src="assets/audio/client-brief.mp3"></audio>
-        <button id="btn-play-brief" class="btn small" type="button">▶ <span data-i18n="playBrief"></span></button>
-        <p id="subtitle-brief" class="subtitle" data-i18n="briefSubtitle"></p>
+      <div class="audio-box" data-audio="act1">
+        <button class="btn small audio-play" type="button"><span class="play-icon">▶</span> <span data-i18n="playBrief"></span></button>
+        <p class="subtitle" data-i18n="briefSubtitle"></p>
       </div>
       <p class="tension" data-i18n="act1Tension"></p>
       <div class="choice-row">
@@ -65,7 +67,7 @@
 
   <!-- ============ ACTO 2: La Búsqueda ============ -->
   <section id="scene-act2" class="screen scene">
-    <div class="scene-bg kenburns"><img src="assets/img/skyline-night.svg" alt="" loading="lazy"></div>
+    <div class="scene-bg kenburns"><img src="assets/img/night-search.svg" alt="" loading="lazy"></div>
     <div class="scene-overlay">
       <p class="scene-kicker" data-i18n="act2Kicker"></p>
       <div class="mail-client">
@@ -77,6 +79,10 @@
           </div>
         </div>
         <div class="mail-body" data-i18n="act2MailBody"></div>
+      </div>
+      <div class="audio-box" data-audio="act2">
+        <button class="btn small audio-play" type="button"><span class="play-icon">▶</span> <span data-i18n="act2AudioLabel"></span></button>
+        <p class="subtitle" data-i18n="act2Subtitle"></p>
       </div>
       <h2 class="question" data-i18n="question1"></h2>
       <div id="act2-options" class="options"></div>
@@ -92,9 +98,13 @@
 
   <!-- ============ ACTO 3: La Entrevista (chat) ============ -->
   <section id="scene-act3" class="screen scene">
-    <div class="scene-bg kenburns"><img src="assets/img/office-desk.svg" alt="" loading="lazy"></div>
+    <div class="scene-bg kenburns"><img src="assets/img/video-call.svg" alt="" loading="lazy"></div>
     <div class="scene-overlay">
       <p class="scene-kicker" data-i18n="act3Kicker"></p>
+      <div class="audio-box" data-audio="act3">
+        <button class="btn small audio-play" type="button"><span class="play-icon">▶</span> <span data-i18n="act3AudioLabel"></span></button>
+        <p class="subtitle" data-i18n="act3Subtitle"></p>
+      </div>
       <div class="chat-wrap">
         <div class="chat-side">
           <img id="candidate-avatar" src="assets/img/candidate.svg" alt="candidate" loading="lazy">
@@ -117,7 +127,10 @@
 
   <!-- ============ ACTO 4: El Twist ============ -->
   <section id="scene-act4" class="screen scene">
-    <div class="scene-bg kenburns"><img src="assets/img/rival-office.svg" alt="" loading="lazy"></div>
+    <div class="scene-bg kenburns">
+      <img src="assets/img/storm-city.svg" alt="" loading="lazy">
+      <div class="rain" aria-hidden="true"></div>
+    </div>
     <div class="scene-overlay">
       <p class="scene-kicker" data-i18n="act4Kicker"></p>
       <div class="mail-client urgent">
@@ -125,6 +138,10 @@
           <div><p class="mail-from">urgent@talentalert.io</p><p class="mail-subject" data-i18n="act4MailSubject"></p></div>
         </div>
         <div class="mail-body" data-i18n="act4MailBody"></div>
+      </div>
+      <div class="audio-box" data-audio="act4">
+        <button class="btn small audio-play" type="button"><span class="play-icon">▶</span> <span data-i18n="act4AudioLabel"></span></button>
+        <p class="subtitle" data-i18n="act4Subtitle"></p>
       </div>
       <h2 class="question" data-i18n="question4"></h2>
       <div id="act4-options" class="options"></div>
@@ -140,6 +157,10 @@
     <div class="scene-bg kenburns"><img src="assets/img/dawn-skyline.svg" alt="" loading="lazy"></div>
     <div class="scene-overlay">
       <p class="scene-kicker" data-i18n="epilogueKicker"></p>
+      <div class="audio-box" data-audio="epilogue">
+        <button class="btn small audio-play" type="button"><span class="play-icon">▶</span> <span data-i18n="epilogueAudioLabel"></span></button>
+        <p class="subtitle" data-i18n="epilogueSubtitle"></p>
+      </div>
       <div class="mail-client letter">
         <div class="mail-head"><span class="mail-dot gold"></span>
           <div><p class="mail-from">anna.kowalska@clientcorp.pl</p><p class="mail-subject" data-i18n="verdictSubject"></p></div>
@@ -167,6 +188,7 @@
   </div>
 
 </div>
+<audio id="scene-audio" preload="auto"></audio>
 <script src="app.js"></script>
 </body>
 </html>
