@@ -4,7 +4,7 @@
 //
 // CORREGIDO (v2):
 //  - modelo correcto: voxtral-mini-tts-3-0
-//  - voice_id (no "voice"), elegido de la librería de voces:
+//  - voice_id (no "voice"), de la librería de voces:
 //    https://docs.mistral.ai/studio/audio/text-to-speech/voices
 //  - la API devuelve JSON con audio_data en base64 → hay que decodificar
 
@@ -21,7 +21,6 @@ if (!API_KEY) {
 const OUT = join(dirname(fileURLToPath(import.meta.url)), "..", "assets", "audio");
 mkdirSync(OUT, { recursive: true });
 
-// Voz de ejemplo; sustitúyela por una polaca si la librería la ofrece:
 const CLIPS = [
   {
     file: "client-brief.mp3",
@@ -54,7 +53,6 @@ for (const clip of CLIPS) {
       console.error(clip.file, "->", resp.status, await resp.text());
       continue;
     }
-    // La API devuelve JSON con audio_data en base64
     const data = await resp.json();
     const buf = Buffer.from(data.audio_data, "base64");
     if (buf.length < 1000) {
