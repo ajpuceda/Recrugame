@@ -298,7 +298,7 @@ function showScreen(id) {
 const emailInput = document.getElementById("input-email");
 const privacyChk = document.getElementById("consent-privacy");
 
-function isValidEmail(v) { return /^[^\s@]+@[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }
+function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }
 
 function getAttempts(email) {
   try { return JSON.parse(localStorage.getItem("hh_attempts") || "{}")[email] || 0; }
