@@ -83,7 +83,8 @@ const I18N = {
     feedbackCorrect: "Świetnie! Poprawna odpowiedź.",
     feedbackWrong: "To nie była najlepsza odpowiedź.",
     feedbackAiFallback: "Nie udało się połączyć z serwerem oceniającym — przyznano neutralną średnią punktację.",
-    demoCandidate: ["Rozumiem. W tym projekcie pracowałem z zespołem 4 osób.","Migracja trwała 6 miesięcy i zakończyła się sukcesem.","Liderowałem, czyli odpowiadałem za całość."],
+    letterCaught: "I jeszcze jedno: świetne oko. Wyciągnąłeś z Marka prawdę o zespole i terminach migracji — niewielu rekruterów to zauważa.",
+    letterMissed: "Mała wskazówka na przyszłość: Marek nie był w tym projekcie tak samodzielny, jak twierdził. Sprawdzaj takich kandydatów pytaniami o zespół, liczby i role.",
     demoLetter: "Dziękuję za przeprowadzenie tej rekrutacji. Twój sposób myślenia był bardzo wartościowy — wrócimy do Ciebie przy następnej trudnej obsadzie.",
     privacyTitle: "Polityka prywatności",
     privacyBody: `<p><strong>Administrator danych:</strong> [TU FIRMA], e-mail kontaktowy: [EMAIL].</p>
@@ -167,7 +168,8 @@ const I18N = {
     feedbackCorrect: "¡Muy bien! Respuesta correcta.",
     feedbackWrong: "Esa no era la mejor respuesta.",
     feedbackAiFallback: "No se pudo conectar con el servidor de evaluación — se otorga una puntuación media neutral.",
-    demoCandidate: ["Entiendo. En ese proyecto trabajé con un equipo de 4 personas.","La migración duró 6 meses y terminó con éxito.","Lideré, es decir, era responsable de todo."],
+    letterCaught: "Y una cosa más: buen ojo. Le sacaste a Marek la verdad sobre el equipo y los plazos de la migración — pocos reclutadores lo pillan.",
+    letterMissed: "Un apunte para la próxima: Marek no era tan solo en ese proyecto como decía. Verifica a este tipo de candidatos con preguntas sobre el equipo, los números y su rol.",
     demoLetter: "Gracias por liderar este proceso de selección. Tu forma de pensar aportó mucho valor — volveremos a ti en la próxima vacante difícil.",
     privacyTitle: "Política de privacidad",
     privacyBody: `<p><strong>Responsable del tratamiento:</strong> [TU EMPRESA], correo de contacto: [EMAIL].</p>
@@ -251,7 +253,8 @@ const I18N = {
     feedbackCorrect: "Well done! Correct answer.",
     feedbackWrong: "That was not the best answer.",
     feedbackAiFallback: "Could not reach the grading server — a neutral average score was awarded.",
-    demoCandidate: ["I see. On that project I worked with a team of 4 people.","The migration took 6 months and ended successfully.","I led it, meaning I was responsible for everything."],
+    letterCaught: "And one more thing: sharp eye. You got the truth out of Marek about the team and the migration timeline — few recruiters catch that.",
+    letterMissed: "A tip for next time: Marek wasn't as alone on that project as he claimed. Vet these candidates with questions about the team, the numbers and their role.",
     demoLetter: "Thank you for running this hiring process. Your way of thinking added real value — we'll come back to you for the next hard-to-fill role.",
     privacyTitle: "Privacy Policy",
     privacyBody: `<p><strong>Data controller:</strong> [TU EMPRESA], contact email: [EMAIL].</p>
@@ -269,7 +272,7 @@ let lang = localStorage.getItem("hh_lang") || "pl";
 let answers = { act2: null, act3: [], act4: null };
 let feedbacks = { act2: "", act3: "", act4: "" };
 let msgCount = 0;
-const MAX_CHAT_MSGS = 3;
+const MAX_CHAT_MSGS = 4;
 
 function t(key) {
   return I18N[lang][key] !== undefined ? I18N[lang][key] : I18N.pl[key];
@@ -432,9 +435,237 @@ function answerAct2(idx) {
   };
 }
 
-/* ============ ACTO 3: chat ============ */
+/* ============ ACTO 3: MOTOR DEL CANDIDATO (demo) ============
+   Marek tiene MEMORIA (no repite temas), ESTADO DE ÁNIMO (reacciona
+   a la calidad de tus preguntas) y un SECRETO: su saludo dice que
+   migró él solo el sistema, pero si preguntas por el equipo o los
+   números revela la verdad. Nadie lo descubre sin preguntar bien. */
 const chatLog = document.getElementById("chat-log");
 const chatInput = document.getElementById("chat-input");
+const typingEl = document.getElementById("typing");
+
+let marekMood = 50;
+const marekAsked = [];
+
+function marekReset() { marekMood = 50; marekAsked.length = 0; }
+
+const MAREK = {
+  pl: {
+    icebreakers: [
+      "Zanim zaczniemy — na rozmowach zwykle padają te same pytania. Miło byłoby usłyszeć coś konkretniejszego.",
+      "Tak z ciekawości: ta rola jest pod konkretny projekt, czy stała?",
+      "Aha, i jeśli pytasz o terminy — mogę zacząć nawet za dwa tygodnie."
+    ],
+    warm: ["Dobre pytanie — ", "O, wreszcie ktoś pyta o szczegóły! ", "Nikt wcześniej o to nie zapytał, ale… "],
+    cold: ["Krótko: ", "Nie mam całego dnia. ", "Bez ogródek: "],
+    repeat: [
+      "Już o tym mówiłem — w skrócie: tak samo jak poprzednio. Coś jeszcze?",
+      "To już padło. Zadam pytanie inaczej: co jeszcze chcesz wiedzieć?",
+      "Powtarzam się… Zwykle to znak, że rozmowa stoi w miejscu."
+    ],
+    generic: [
+      "Hmm, ok. A co dokładnie chcesz wiedzieć? Pytaj konkretnie — nie mam całego dnia.",
+      "Rozumiem. To wszystko? Chętnie opowiem więcej o projekcie.",
+      "Dobra, ale wracając do sedna: migracja, Spark, Warszawa. Co cię konkretnie interesuje?",
+      "Hmm. Nie bardzo wiem, co odpowiedzieć. Spytaj o projekt, zespół albo technologię."
+    ],
+    bonus: [
+      "A, i jeszcze jedno — mogę zacząć nawet za dwa tygodnie, nie za trzy.",
+      "Przy okazji: mam drugą ofertę w toku, ale wasz projekt brzmi ciekawiej.",
+      "Tak z ciekawości — jakie są widełki po tej stronie? Żebyśmy nie trwonili czasu.",
+      "I tak poza protokołem: jeśli projekt będzie dobry, widełki są do rozmowy."
+    ],
+    topics: [
+      { id: "team", rx: /(zesp[oó]|team|os[oó]b|koleg|sami|samodzielnie|obok)/i,
+        replies: [
+          "Zespół? Były cztery osoby, ale architektura i kluczowe decyzje były moje. Reszta głównie wdrażała to, co zaprojektowałem.",
+          "Szczerze? Pracowałem z trzema innymi inżynierami. Ja projektowałem, oni wdrażali. Ale migracja była i jest moja."
+        ] },
+      { id: "numbers", rx: /(ile|jak długo|jak dlugo|miesi[ąa]c|tygodni|liczb|metr|%|procent|terabajt|tb)/i,
+        replies: [
+          "Migracja trwała… sześć miesięcy. Dłużej niż plan, ale zero przestojów na produkcji. Przenieśliśmy około czterdziestu terabajtów.",
+          "Liczb? Około czterdzieści terabajtów danych i sześć miesięcy pracy. Plan mówił trzy miesiące — ale plan to plan."
+        ] },
+      { id: "salary", rx: /(pensj|stawk|wynagrodz|pieni|widełk|budżet|budget|b2b|oczekiwan|finansow|zarobk|zarab)/i,
+        replies: [
+          "Widełki? Powiedzmy: dwadzieścia osiem do trzydziestu czterech tysięcy brutto B2B. Elastyczny jestem, jeśli projekt jest ciekawy.",
+          "Kwestie pieniężne: 28–34 tysiące na B2B. Ale zależy mi bardziej na projekcie niż na samych liczbach."
+        ] },
+      { id: "fail", rx: /(porażk|porazk|bł[ąe]d|problem|trudno|ryzyk|nie uda)/i,
+        replies: [
+          "Największy problem? Pod koniec drugiego miesiąca schematy danych się nie zgadzały. Tydzień opóźnienia, trudne rozmowy z biznesem. Nauczyłem się komunikować wcześniej.",
+          "Było blisko: konflikt priorytetów z operacją. Uspokoiłem ludzi, przepiąłem terminy, wyszło. Ale stresu było sporo."
+        ] },
+      { id: "tech", rx: /(spark|pyspark|hadoop|kafka|sql|python|airflow|stack|stos|technolog|narzędzi|narzedzi)/i,
+        replies: [
+          "Spark 3.3, głównie PySpark. Pipeline'y w Airflow, dane w S3. Znam też Kafka i dbt, choć ostatnio rzadziej tego używałem.",
+          "Technologicznie? PySpark na produkcji, orchestration w Airflow, hurtownia w BigQuery. Kafka się pojawiła przy CDC."
+        ] },
+      { id: "lead", rx: /(lider|kierow|prowadz|odpowiedzial|rol[ayęo])/i,
+        replies: [
+          "Formalnie nie byłem leadem, ale to ja ustalałem architekturę i dzieliłem zadania. Szef mnie słuchał, więc w praktyce prowadziłem projekt.",
+          "Moja rola? Projektowałem, decydowałem, koordynowałem. Tytuł był niżej, odpowiedzialność wyżej — takie życie w korpo."
+        ] },
+      { id: "scope", rx: /(zakres|migracj|system|architektur|baz|legacy|tabel|projekt)/i,
+        replies: [
+          "Cały system legacy: Oracle do BigQuery. Do tego kilka mikrousług do przepięcia, ale to była mniejsza część.",
+          "Zakres? Ponad sto tabel, kilka interfejsów i cała warstwa raportowa. Bez tej migracji firma by stała w miejscu."
+        ] },
+      { id: "why", rx: /(dlaczego|zmienia|zmien|odchodz|zostaw|pow[oó]d|ciekaw)/i,
+        replies: [
+          "Szczerze? W obecnej roli się wypaliłem — dwa lata tego samego. Szukam projektu, gdzie zbuduję coś od zera.",
+          "Dlaczego zmiana? Powiedziałbym, że to kwestia rozwoju. I szczerze — trochę też zespołu."
+        ] }
+    ]
+  },
+  es: {
+    icebreakers: [
+      "Antes de empezar — en las entrevistas suelen caer siempre las mismas preguntas. Estaría bien oír algo concreto.",
+      "Por curiosidad: ¿el rol es para un proyecto concreto o fijo?",
+      "Ah, y si preguntas por fechas: podría empezar incluso en dos semanas."
+    ],
+    warm: ["Buena pregunta — ", "¡Por fin alguien pregunta por los detalles! ", "Nadie me lo había preguntado antes, pero… "],
+    cold: ["Corto: ", "No tengo todo el día. ", "Sin rodeos: "],
+    repeat: [
+      "Eso ya te lo he contado — en resumen: igual que antes. ¿Algo más?",
+      "Esto ya ha salido. Te lo pregunto de otra forma: ¿qué más quieres saber?",
+      "Me repito… Suele ser señal de que la conversación se ha estancado."
+    ],
+    generic: [
+      "Hmm, vale. ¿Qué quieres saber exactamente? Pregúntame algo concreto — no tengo mucho tiempo.",
+      "Entiendo. ¿Eso es todo? Encantado de contarte más del proyecto.",
+      "Bien, pero volviendo al grano: migración, Spark, Varsovia. ¿Qué te interesa exactamente?",
+      "Hmm. No sé muy bien qué responderte. Pregúntame por el proyecto, el equipo o la tecnología."
+    ],
+    bonus: [
+      "Ah, y una cosa más — puedo empezar incluso en dos semanas, no tres.",
+      "Por cierto: tengo otra oferta en marcha, pero vuestro proyecto suena mejor.",
+      "Por curiosidad — ¿cuál es el rango salarial por vuestra parte? Para no perder el tiempo.",
+      "Y off the record: si el proyecto mola, el sueldo es negociable."
+    ],
+    topics: [
+      { id: "team", rx: /(equipo|gente|personas|compañ|colega|solo|sola|solas)/i,
+        replies: [
+          "¿El equipo? Fuimos 4 personas, pero la arquitectura y las decisiones clave fueron mías. El resto se limitaba a ejecutar lo que yo diseñaba.",
+          "¿Sinceramente? Trabajé con otros tres ingenieros. Yo diseñaba, ellos implementaban. Pero la migración fue mía."
+        ] },
+      { id: "numbers", rx: /(cu[áa]nt|duraci|meses|semanas|n[úu]mero|datos|terabyte|tb|%|por ciento|metric)/i,
+        replies: [
+          "La migración duró… seis meses. Más de lo previsto, pero cero caídas en producción. Migramos unos cuarenta terabytes.",
+          "¿Números? Unos 40 terabytes de datos y seis meses de trabajo. El plan decía tres meses — pero un plan es un plan."
+        ] },
+      { id: "salary", rx: /(salario|sueldo|pretension|rango|dinero|b2b|bruto)/i,
+        replies: [
+          "¿Mis expectativas? Digamos: 28–34 mil brutos al mes en B2B. Soy flexible si el proyecto es interesante.",
+          "En temas de dinero: 28–34 mil en B2B. Pero me importa más el proyecto que las cifras."
+        ] },
+      { id: "fail", rx: /(fracas|error|problem|dif[íi]cil|riesg|fall)/i,
+        replies: [
+          "¿El mayor problema? Al final del segundo mes los esquemas de datos no cuadraban. Una semana extra, conversaciones duras con negocio. Aprendí a comunicar antes.",
+          "Hubo un momento delicado: conflicto de prioridades con operaciones. Calmé a la gente, movimos fechas, salió adelante. Pero el estrés se notó."
+        ] },
+      { id: "tech", rx: /(spark|pyspark|hadoop|kafka|sql|python|airflow|stack|tecnolog|herramient)/i,
+        replies: [
+          "Spark 3.3, sobre todo PySpark. Pipelines en Airflow, datos en S3. También conozco Kafka y dbt, aunque últimamente menos.",
+          "¿Tecnología? PySpark en producción, orquestación en Airflow, warehouse en BigQuery. Kafka apareció con el CDC."
+        ] },
+      { id: "lead", rx: /(lider|jefe|dirig|responsab|rol|cargo|t[íi]tulo)/i,
+        replies: [
+          "Formalmente no era 'lead', pero yo definía la arquitectura y repartía tareas. Mi jefe me hacía caso, así que en la práctica dirigía el proyecto.",
+          "¿Mi rol? Diseñaba, decidía, coordinaba. El título era menor, la responsabilidad mayor — así es la vida corporativa."
+        ] },
+      { id: "scope", rx: /(alcance|migraci|sistem|arquitectur|base|legacy|tablas|proyecto)/i,
+        replies: [
+          "Todo el sistema legacy: de Oracle a BigQuery. Además un par de microservicios que migrar, pero esa fue la parte pequeña.",
+          "¿Alcance? Más de cien tablas, varios interfaces y toda la capa de reporting. Sin esa migración, la empresa se quedaba parada."
+        ] },
+      { id: "why", rx: /(por qu|porqu|cambi|march|motivo|busc)/i,
+        replies: [
+          "¿Sinceramente? Me quemé en mi rol actual — dos años de lo mismo. Busco un proyecto donde construir algo desde cero.",
+          "¿Por qué cambiar? Diría que desarrollo profesional. Y siendo honesto — también algo del equipo."
+        ] }
+    ]
+  },
+  en: {
+    icebreakers: [
+      "Before we start — interviews usually mean the same old questions. Nice to hear something specific for once.",
+      "Out of curiosity: is this role for a specific project, or permanent?",
+      "Oh, and if you're wondering about timing — I could start in as little as two weeks."
+    ],
+    warm: ["Good question — ", "Ah, finally someone asks about the details! ", "Nobody asked me that before, but… "],
+    cold: ["Short version: ", "I don't have all day. ", "Straight to the point: "],
+    repeat: [
+      "I already told you — short version: same as before. Anything else?",
+      "That's been covered. Let me put it differently: what else do you want to know?",
+      "I'm repeating myself… usually a sign the conversation is going in circles."
+    ],
+    generic: [
+      "Hmm, okay. What exactly do you want to know? Be specific — I don't have much time.",
+      "I see. Is that all? Happy to tell you more about the project.",
+      "Right, but back to the point — migration, Spark, Warsaw. What matters to you?",
+      "Hmm. Not sure what to answer. Ask me about the project, the team, or the tech."
+    ],
+    bonus: [
+      "Oh, and one more thing — I could start in two weeks, not three.",
+      "By the way: I have another offer in the pipeline, but your project sounds better.",
+      "Just curious — what's the salary range on your side? So we don't waste time.",
+      "And off the record: if the project is good, the money is negotiable."
+    ],
+    topics: [
+      { id: "team", rx: /(team|people|colleagues|yourself|alone|solo|members)/i,
+        replies: [
+          "The team? There were 4 of us, but the architecture and key decisions were mine. The rest mostly implemented what I designed.",
+          "Honestly? I worked with three other engineers. I designed, they implemented. But the migration was still mine."
+        ] },
+      { id: "numbers", rx: /(how (many|long)|months|weeks|numbers|metrics|terabyte|tb|%|percent|duration)/i,
+        replies: [
+          "The migration took… six months. Longer than planned, but zero production downtime. We moved around forty terabytes.",
+          "Numbers? About 40 terabytes of data and six months of work. The plan said three months — but plans are plans."
+        ] },
+      { id: "salary", rx: /(salary|pay|money|rate|b2b|expectations|compensation)/i,
+        replies: [
+          "My expectations? Let's say: 28–34k PLN gross on B2B. I'm flexible if the project is interesting.",
+          "Money-wise: 28–34k on B2B. But I care more about the project than the figures."
+        ] },
+      { id: "fail", rx: /(fail|mistake|problem|difficult|risk|issue|wrong)/i,
+        replies: [
+          "The biggest issue? End of month two, the data schemas wouldn't reconcile. An extra week, tough conversations with the business. I learned to communicate earlier.",
+          "There was a close call: a priority clash with operations. I calmed people down, shifted deadlines, it worked out. But the stress was real."
+        ] },
+      { id: "tech", rx: /(spark|pyspark|hadoop|kafka|sql|python|airflow|stack|tech|tools)/i,
+        replies: [
+          "Spark 3.3, mostly PySpark. Pipelines in Airflow, data in S3. I also know Kafka and dbt, though less recently.",
+          "Tech-wise? PySpark in production, orchestration in Airflow, warehouse in BigQuery. Kafka showed up with the CDC."
+        ] },
+      { id: "lead", rx: /(lead|boss|manag|responsib|role|title)/i,
+        replies: [
+          "Formally I wasn't the 'lead', but I set the architecture and split the tasks. My boss listened to me, so in practice I ran the project.",
+          "My role? I designed, decided, coordinated. The title was lower, the responsibility higher — corporate life."
+        ] },
+      { id: "scope", rx: /(scope|migrat|system|architect|database|legacy|tables|project)/i,
+        replies: [
+          "The whole legacy system — Oracle database to BigQuery. Plus a few microservices to cut over, but that was the smaller part.",
+          "Scope? Over a hundred tables, several interfaces, the entire reporting layer. Without that migration, the company stood still."
+        ] },
+      { id: "why", rx: /(why|leav|chang|reason|looking)/i,
+        replies: [
+          "Honestly? I burned out in my current role — two years of the same thing. I want a project where I build something from scratch.",
+          "Why the change? Growth, I'd say. And, honestly — the team had something to do with it too."
+        ] }
+    ]
+  }
+};
+
+function pickFrom(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+function typingDelay(text) { return Math.min(2600, 500 + text.length * 16); }
+
+async function addCandidateBubble(text) {
+  typingEl.classList.remove("hidden");
+  await new Promise(r => setTimeout(r, typingDelay(text)));
+  typingEl.classList.add("hidden");
+  addBubble(text, "them");
+}
 
 function addBubble(text, who, score) {
   const div = document.createElement("div");
@@ -450,6 +681,50 @@ function addBubble(text, who, score) {
   chatLog.scrollTop = chatLog.scrollHeight;
 }
 
+function detectMarekTopic(text) {
+  const a = " " + text.toLowerCase() + " ";
+  for (const tp of MAREK[lang].topics) if (tp.rx.test(a)) return tp;
+  return null;
+}
+
+function moodOpener() {
+  if (marekMood >= 72) return pickFrom(MAREK[lang].warm);
+  if (marekMood < 34) return pickFrom(MAREK[lang].cold);
+  return "";
+}
+
+async function demoCandidateReply(text) {
+  const tp = detectMarekTopic(text);
+  let reply, delta = 0, isRepeat = false;
+
+  if (text.trim().length < 12) delta -= 10;          // mensaje mínimo = Marek se enfría
+  if (!text.includes("?")) delta -= 4;
+  if (text.length >= 20 && text.includes("?")) delta += 6;
+
+  if (tp) {
+    if (marekAsked.includes(tp.id)) {
+      reply = pickFrom(MAREK[lang].repeat);
+      isRepeat = true;
+      delta -= 4;
+    } else {
+      reply = pickFrom(tp.replies);
+      marekAsked.push(tp.id);
+      delta += 10;                                    // pregunta con tema = Marek se abre
+    }
+  } else {
+    reply = pickFrom(MAREK[lang].generic);
+    if (text.length >= 25) delta += 2;
+  }
+  marekMood = Math.max(0, Math.min(100, marekMood + delta));
+
+  await addCandidateBubble(moodOpener() + reply);
+
+  // Espontaneidad: a veces suelta algo extra por su cuenta
+  if (tp && !isRepeat && marekMood >= 55 && Math.random() < 0.35) {
+    await addCandidateBubble(pickFrom(MAREK[lang].bonus));
+  }
+}
+
 chatInput.addEventListener("input", () => {
   document.getElementById("chat-count").textContent = chatInput.value.length;
 });
@@ -458,12 +733,14 @@ function startAct3() {
   chatLog.innerHTML = "";
   msgCount = 0;
   answers.act3 = [];
+  marekReset();
   document.getElementById("chat-count").textContent = "0";
   document.getElementById("msg-count").textContent = "0";
   document.getElementById("act3-finish").classList.add("hidden");
   document.getElementById("chat-send").disabled = false;
   addBubble(t("candidateGreeting"), "them");
   showScreen("scene-act3");
+  setTimeout(() => { addCandidateBubble(pickFrom(MAREK[lang].icebreakers)); }, 1500);
 }
 
 document.getElementById("chat-send").addEventListener("click", async () => {
@@ -479,8 +756,7 @@ document.getElementById("chat-send").addEventListener("click", async () => {
   const score10 = await gradeMessage(text);
   answers.act3.push(score10 / 10);
   addBubble(text, "me", score10);
-  const reply = await candidateReply(text);
-  addBubble(reply, "them");
+  await candidateReply(text);
   if (msgCount >= MAX_CHAT_MSGS) {
     document.getElementById("act3-finish").classList.remove("hidden");
   }
@@ -516,7 +792,7 @@ async function gradeMessage(text) {
     let score = 2;
     if (text.length >= 20) score += 2;
     if (a.includes("?")) score += 2;
-    const kw = ["cuántos", "ile", "equipo", "zespół", "qué hiciste", "co zrobiłeś", "cyfr", "liczb", "wynik", "rezultat", "jak ", "co ", "team", "numbers", "result", "scope", "zakres"];
+    const kw = ["cuántos", "cuantas", "cuánto", "ile", "equipo", "zespół", "qué hiciste", "co zrobiłeś", "cyfr", "liczb", "wynik", "rezultat", "jak ", "co ", "team", "numbers", "result", "scope", "zakres", "role", "rola", "rolę", "lead", "dlaczego", "por qué", "why", "months", "miesięcy", "meses"];
     score += Math.min(4, kw.filter(k => a.includes(k)).length);
     return Math.max(0, Math.min(10, score));
   }
@@ -529,22 +805,15 @@ async function gradeMessage(text) {
 }
 
 async function candidateReply(text) {
-  document.getElementById("typing").classList.remove("hidden");
+  if (CONFIG.DEMO_MODE) { await demoCandidateReply(text); return; }
+  typingEl.classList.remove("hidden");
   let reply;
-  if (CONFIG.DEMO_MODE) {
-    await new Promise(r => setTimeout(r, 900));
-    const lines = t("demoCandidate");
-    reply = lines[Math.floor(Math.random() * lines.length)];
-  } else {
-    try {
-      const data = await postJson(CONFIG.CANDIDATE_ENDPOINT, { message: text, lang }, 15000);
-      reply = data.reply || "…";
-    } catch {
-      reply = "…";
-    }
-  }
-  document.getElementById("typing").classList.add("hidden");
-  return reply;
+  try {
+    const data = await postJson(CONFIG.CANDIDATE_ENDPOINT, { message: text, lang }, 15000);
+    reply = data.reply || "…";
+  } catch { reply = "…"; }
+  typingEl.classList.add("hidden");
+  addBubble(reply, "them");
 }
 
 /* ============ ACTO 4 ============ */
@@ -593,6 +862,12 @@ function rankFor(score) {
   return 3;
 }
 
+/* La carta del veredicto reacciona a si descubriste el secreto de Marek */
+function demoLetterText() {
+  const found = marekAsked.includes("team") || marekAsked.includes("numbers") || marekAsked.includes("lead");
+  return t("demoLetter") + " " + t(found ? "letterCaught" : "letterMissed");
+}
+
 async function showEpilogue() {
   showScreen("scene-epilogue");
   const total = computeTotal();
@@ -615,12 +890,12 @@ async function showEpilogue() {
   let letter;
   if (CONFIG.DEMO_MODE) {
     await new Promise(r => setTimeout(r, 800));
-    letter = t("demoLetter");
+    letter = demoLetterText();
   } else {
     try {
       const data = await postJson(CONFIG.LETTER_ENDPOINT, { score: total, rank: t("levelNames")[rankFor(total)], lang }, 15000);
-      letter = data.letter || t("demoLetter");
-    } catch { letter = t("demoLetter"); }
+      letter = data.letter || demoLetterText();
+    } catch { letter = demoLetterText(); }
   }
   letterEl.textContent = "";
   letterEl.classList.add("typing");
@@ -670,7 +945,7 @@ document.getElementById("close-privacy").addEventListener("click", () => {
   document.getElementById("privacy-modal").classList.add("hidden");
 });
 document.getElementById("privacy-modal").addEventListener("click", e => {
-  if (e.target.id === "privacy-modal") e.target.classList.add("hidden");
+  if (e.target.id === "privacy-modal") e.currentTarget.classList.add("hidden");
 });
 
 applyLang();
