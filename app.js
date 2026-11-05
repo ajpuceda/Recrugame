@@ -1190,3 +1190,279 @@ function addBubble(text, who, score) {
     const s = document.createElement("span");
     s.className = "msg-score";
     s.textContent = `★ ${score}/10`;
+    div.appendChild(s);
+  }
+  chatLog.appendChild(div);
+  chatLog.scrollTop = chatLog.scrollHeight;
+}
+
+function detectMarekTopic(text) {
+  const a = " " + text.toLowerCase() + " ";
+  for (const tp of MAREK[lang].topics) if (tp.rx.test(a)) return tp;
+  return null;
+}
+
+function moodOpener() {
+  if (marekMood >= 72) return pickFrom(MAREK[lang].warm);
+  if (marekMood < 34) return pickFrom(MAREK[lang].cold);
+  return "";
+}
+
+async function demoCandidateReply(text) {
+  const tp = detectMarekTopic(text);
+  let reply, delta = 0, isRepeat = false;
+
+  if (text.trim().length < 12) delta -= 10;          // mensaje mínimo = Marek se enfría
+  if (!text.includes("?")) delta -= 4;
+  if (text.length >= 20 && text.includes("?")) delta += 6;
+
+  if (tp) {
+    if (marekAsked.includes(tp.id)) {
+      reply = pickFrom(MAREK[lang].repeat);
+      isRepeat = true;
+      delta -= 4;
+    } else {
+      reply = pickFrom(tp.replies);
+      marekAsked.push(tp.id);
+      delta += 10;                                    // pregunta con tema = Marek se abre
+    }
+  } else {
+    reply = pickFrom(MAREK[lang].generic);
+    if (text.length >= 25) delta += 2;
+  }
+  marekMood = Math.max(0, Math.min(100, marekMood + delta));
+
+  await addCandidateBubble(moodOpener() + reply);
+
+  // Espontaneidad: a veces suelta algo extra por su cuenta
+  if (tp && !isRepeat && marekMood >= 55 && Math.random() < 0.35) {
+    await addCandidateBubble(pickFrom(MAREK[lang].bonus));
+  }
+}
+
+chatInput.addEventListener("input", () => {
+  document.getElementById("chat-count").textContent = chatInput.value.length;
+});
+
+function startAct3() {
+  chatLog.innerHTML = "";
+  msgCount = 0;
+  answers.act3 = [];
+  marekReset();
+  document.getElementById("chat-count").textContent = "0";
+  document.getElementById("msg-count").textContent = "0";
+  document.getElementById("act3-finish").classList.add("hidden");
+  document.getElementById("chat-send").disabled = false;
+  addBubble(t("candidateGreeting"), "them");
+  showScreen("scene-act3");
+  setTimeout(() => { addCandidateBubble(pickFrom(MAREK[lang].icebreakers)); }, 1500);
+}
+
+document.getElementById("chat-send").addEventListener("click", async () => {
+  const text = chatInput.value.trim();
+  if (!text || msgCount >= MAX_CHAT_MSGS) return;
+  msgCount++;
+  document.getElementById("msg-count").textContent = msgCount;
+  addBubble(text, "me");
+  chatInput.value = "";
+  document.getElementById("chat-count").textContent = "0";
+  const sendBtn = document.getElementById("chat-send");
+  sendBtn.disabled = true;
+  const score10 = await gradeMessage(text);
+  answers.act3.push(score10 / 10);
+  addBubble(text, "me", score10);
+  await candidateReply(text);
+  if (msgCount >= MAX_CHAT_MSGS) {
+    document.getElementById("act3-finish").classList.remove("hidden");
+  }
+  sendBtn.disabled = false;
+});
+
+document.getElementById("act3-finish").addEventListener("click", () => {
+  preloadSceneImg("assets/img/storm-city.svg");
+  preloadClip("act4");
+  renderAct4();
+  showScreen("scene-act4");
+});
+
+async function postJson(url, payload, timeoutMs) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), timeoutMs);
+  try {
+    const resp = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+      signal: ctrl.signal
+    });
+    if (!resp.ok) throw new Error("bad status");
+    return await resp.json();
+  } finally { clearTimeout(timer); }
+}
+
+async function gradeMessage(text) {
+  if (CONFIG.DEMO_MODE) {
+    await new Promise(r => setTimeout(r, 700));
+    const a = text.toLowerCase();
+    let score = 2;
+    if (text.length >= 20) score += 2;
+    if (a.includes("?")) score += 2;
+    const kw = ["cuántos", "cuantas", "cuánto", "ile", "equipo", "zespół", "qué hiciste", "co zrobiłeś", "cyfr", "liczb", "wynik", "rezultat", "jak ", "co ", "team", "numbers", "result", "scope", "zakres", "role", "rola", "rolę", "lead", "dlaczego", "por qué", "why", "months", "miesięcy", "meses"];
+    score += Math.min(4, kw.filter(k => a.includes(k)).length);
+    return Math.max(0, Math.min(10, score));
+  }
+  try {
+    const data = await postJson(CONFIG.API_ENDPOINT, { answer: text, questionId: "interview-msg", lang }, 15000);
+    return Math.max(0, Math.min(10, data.score / 10));
+  } catch {
+    return 5;
+  }
+}
+
+async function candidateReply(text) {
+  if (CONFIG.DEMO_MODE) { await demoCandidateReply(text); return; }
+  typingEl.classList.remove("hidden");
+  let reply;
+  try {
+    const data = await postJson(CONFIG.CANDIDATE_ENDPOINT, { message: text, lang }, 15000);
+    reply = data.reply || "…";
+  } catch { reply = "…"; }
+  typingEl.classList.add("hidden");
+  addBubble(reply, "them");
+}
+
+/* ============ ACTO 4 ============ */
+function renderAct4() {
+  const container = document.getElementById("act4-options");
+  container.innerHTML = "";
+  t("options4").forEach((opt, idx) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "option";
+    btn.innerHTML = `<span class="opt-letter">${"abcd"[idx]})</span>${opt}`;
+    btn.addEventListener("click", () => answerAct4(idx));
+    container.appendChild(btn);
+  });
+  document.getElementById("act4-reply").classList.add("hidden");
+}
+
+function answerAct4(idx) {
+  const correct = idx === 1;
+  answers.act4 = correct ? 1 : 0;
+  feedbacks.act4 = t("act4Feedback") + " " + (correct ? t("feedbackCorrect") : t("feedbackWrong"));
+  document.querySelectorAll("#act4-options .option").forEach((el, i) => {
+    el.disabled = true;
+    if (i === 1) el.classList.add("correct");
+    else if (i === idx) el.classList.add("wrong");
+  });
+  document.getElementById("act4-reply-text").textContent = feedbacks.act4;
+  document.getElementById("act4-reply").classList.remove("hidden");
+  document.getElementById("act4-next").onclick = () => {
+    preloadSceneImg("assets/img/dawn-skyline.svg");
+    preloadClip("epilogue");
+    showEpilogue();
+  };
+}
+
+/* ============ EPÍLOGO ============ */
+function computeTotal() {
+  const act3Avg = answers.act3.length ? answers.act3.reduce((a, b) => a + b, 0) / answers.act3.length : 0;
+  return Math.round((answers.act2 || 0) * 35 + act3Avg * 35 + (answers.act4 || 0) * 30);
+}
+
+function rankFor(score) {
+  if (score < 50) return 0;
+  if (score < 70) return 1;
+  if (score < 85) return 2;
+  return 3;
+}
+
+/* La carta del veredicto reacciona a si descubriste el secreto de Marek */
+function demoLetterText() {
+  const found = marekAsked.includes("team") || marekAsked.includes("numbers") || marekAsked.includes("lead");
+  return t("demoLetter") + " " + t(found ? "letterCaught" : "letterMissed");
+}
+
+async function showEpilogue() {
+  showScreen("scene-epilogue");
+  const total = computeTotal();
+  document.getElementById("result-score").textContent = total;
+  document.getElementById("result-rank").textContent = t("levelNames")[rankFor(total)];
+  const fb = document.getElementById("result-feedback");
+  fb.innerHTML = "";
+  const act3Avg = answers.act3.length ? Math.round(answers.act3.reduce((a, b) => a + b, 0) / answers.act3.length * 100) : 0;
+  [["feedbackTitle1", feedbacks.act2],
+   ["feedbackTitle2", `★ ${act3Avg}/100`],
+   ["feedbackTitle3", feedbacks.act4]].forEach(([titleKey, text]) => {
+    const div = document.createElement("div");
+    div.className = "result-item";
+    div.innerHTML = `<span class="ri-title">${t(titleKey)}</span>${text}`;
+    fb.appendChild(div);
+  });
+  document.getElementById("cta-link").href = CONFIG.CTA_URL;
+  const letterEl = document.getElementById("verdict-letter");
+  letterEl.innerHTML = '<div class="spinner inline"></div>';
+  let letter;
+  if (CONFIG.DEMO_MODE) {
+    await new Promise(r => setTimeout(r, 800));
+    letter = demoLetterText();
+  } else {
+    try {
+      const data = await postJson(CONFIG.LETTER_ENDPOINT, { score: total, rank: t("levelNames")[rankFor(total)], lang }, 15000);
+      letter = data.letter || demoLetterText();
+    } catch { letter = demoLetterText(); }
+  }
+  letterEl.textContent = "";
+  letterEl.classList.add("typing");
+  let li = 0;
+  const tw = setInterval(() => {
+    li++;
+    letterEl.textContent = letter.slice(0, li);
+    if (li >= letter.length) { clearInterval(tw); letterEl.classList.remove("typing"); }
+  }, 16);
+  sendLead(total);
+}
+
+document.getElementById("btn-copy").addEventListener("click", async () => {
+  const text = t("shareText").replace("{score}", computeTotal()).replace("{url}", window.location.href);
+  const status = document.getElementById("copy-status");
+  try { await navigator.clipboard.writeText(text); status.textContent = t("copied"); }
+  catch { status.textContent = t("copyFallback").replace("{text}", text); }
+});
+
+/* ============ Lead (header corregido, intacto) ============ */
+function sendLead(total) {
+  const payload = {
+    name: document.getElementById("input-name").value.trim(),
+    email: emailInput.value.trim().toLowerCase(),
+    score: total,
+    act2: answers.act2,
+    act3_msgs: answers.act3.map(s => Math.round(s * 100)),
+    act4: answers.act4,
+    radar: PG.radarDone ? { ojo: PG.lastScores.ojo, temple: PG.lastScores.temple, apetito: PG.lastScores.apetito, archetype: PG.archetype } : null,
+    consent_privacy: privacyChk.checked,
+    consent_marketing: document.getElementById("consent-marketing").checked,
+    lang,
+    timestamp: new Date().toISOString()
+  };
+  fetch(CONFIG.LEAD_ENDPOINT, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "text/plain;charset=UTF-8" },
+    body: JSON.stringify(payload)
+  }).catch(() => {});
+}
+
+/* ============ Modal RGPD ============ */
+document.getElementById("open-privacy").addEventListener("click", () => {
+  document.getElementById("privacy-modal").classList.remove("hidden");
+});
+document.getElementById("close-privacy").addEventListener("click", () => {
+  document.getElementById("privacy-modal").classList.add("hidden");
+});
+document.getElementById("privacy-modal").addEventListener("click", e => {
+  if (e.target.id === "privacy-modal") e.currentTarget.classList.add("hidden");
+});
+
+applyLang();
+renderAct2();
