@@ -82,6 +82,10 @@ const I18N = {
     sendMsg: "Wyślij",
     messagesLabel: "wiadomości",
     finishInterview: "Zakończ rozmowę",
+    rivalNotif1: "🏢 Powiadomienie: agencja konkurencji właśnie zadzwoniła do Marka.",
+    rivalNotif2: "🏢 Konkurencja dzwoni drugi raz. Proponują prezentację „od razu”.",
+    rivalNotif3: "⏳ Marek odpowiedział agencji konkurencji. Czas działa przeciw tobie.",
+    rivalMarekBubble: "A, przepraszam — dzwoniła do mnie inna agencja. Wygląda na to, że dziś jestem popularny. Wracajmy do rzeczy: o co chciałeś zapytać?",
     candidateGreeting: "Dzień dobry! Słyszałem, że szukacie kogoś do migracji systemu. W ostatnim projekcie samodzielnie przeprowadziłem pełną migrację.",
     act3AudioLabel: "Odsłuchaj wiadomość od Marka",
     act3Subtitle: "„Dzień dobry! Słyszałem, że szukacie kogoś do migracji systemu. W ostatnim projekcie samodzielnie przeprowadziłem pełną migrację.”",
@@ -199,6 +203,10 @@ const I18N = {
     sendMsg: "Enviar",
     messagesLabel: "mensajes",
     finishInterview: "Terminar entrevista",
+    rivalNotif1: "🏢 Notificación: una agencia rival acaba de llamar a Marek.",
+    rivalNotif2: "🏢 La agencia rival llama por segunda vez. Ofrecen presentarlo YA.",
+    rivalNotif3: "⏳ Marek ha respondido a la agencia rival. El tiempo juega en tu contra.",
+    rivalMarekBubble: "Ah, perdona — me ha llamado otra agencia. Parece que hoy estoy solicitado. Volvamos a lo nuestro: ¿qué querías preguntarme?",
     candidateGreeting: "¡Buenos días! He oído que buscáis a alguien para una migración de sistema. En mi último proyecto lideré yo solo la migración completa.",
     act3AudioLabel: "Escuchar el mensaje de Marek",
     act3Subtitle: "«¡Buenos días! He oído que buscáis a alguien para una migración de sistema. En mi último proyecto lideré yo solo la migración completa».",
@@ -316,6 +324,10 @@ const I18N = {
     sendMsg: "Send",
     messagesLabel: "messages",
     finishInterview: "End interview",
+    rivalNotif1: "🏢 Notification: a rival agency just called Marek.",
+    rivalNotif2: "🏢 The rival agency is calling again. They're offering to present him NOW.",
+    rivalNotif3: "⏳ Marek replied to the rival agency. Time is working against you.",
+    rivalMarekBubble: "Oh, sorry — another agency just called me. Seems I'm in demand today. Back to us: what did you want to ask?",
     candidateGreeting: "Good morning! I heard you're looking for someone for a system migration. In my last project I single-handedly led the full migration.",
     act3AudioLabel: "Play Marek's message",
     act3Subtitle: "\"Good morning! I heard you're looking for someone for a system migration. In my last project I single-handedly led the full migration.\"",
@@ -1208,6 +1220,38 @@ function addBubble(text, who, score) {
   chatLog.scrollTop = chatLog.scrollHeight;
 }
 
+/* Presión competitiva: la agencia rival también va a por Marek.
+   Las notificaciones escalan con cada mensaje del jugador. No cambian
+   la puntuación — ponen a prueba cómo pregunta bajo presión. */
+let rivalShown = 0;
+let act3Live = false;
+let rivalTimers = [];
+
+function clearRivalTimers() { rivalTimers.forEach(clearTimeout); rivalTimers = []; }
+
+function addSystemBubble(text) {
+  const div = document.createElement("div");
+  div.className = "bubble system";
+  div.textContent = text;
+  chatLog.appendChild(div);
+  chatLog.scrollTop = chatLog.scrollHeight;
+}
+
+function scheduleRivalNotif() {
+  if (rivalShown >= 3) return;
+  const n = rivalShown + 1;
+  rivalTimers.push(setTimeout(() => {
+    if (!act3Live || rivalShown >= n) return;
+    rivalShown = n;
+    addSystemBubble(t("rivalNotif" + n));
+    if (n === 2) {
+      rivalTimers.push(setTimeout(() => {
+        if (act3Live) addCandidateBubble(t("rivalMarekBubble"));
+      }, 2800));
+    }
+  }, 1600));
+}
+
 function detectMarekTopic(text) {
   const a = " " + text.toLowerCase() + " ";
   for (const tp of MAREK[lang].topics) if (tp.rx.test(a)) return tp;
@@ -1261,12 +1305,22 @@ function startAct3() {
   msgCount = 0;
   answers.act3 = [];
   marekReset();
+  rivalShown = 0;
+  act3Live = true;
+  clearRivalTimers();
   document.getElementById("chat-count").textContent = "0";
   document.getElementById("msg-count").textContent = "0";
   document.getElementById("act3-finish").classList.add("hidden");
   document.getElementById("chat-send").disabled = false;
   addBubble(t("candidateGreeting"), "them");
   showScreen("scene-act3");
+  // si el jugador se queda quieto, la presión llega sola
+  rivalTimers.push(setTimeout(() => {
+    if (act3Live && msgCount === 0 && rivalShown === 0) {
+      rivalShown = 1;
+      addSystemBubble(t("rivalNotif1"));
+    }
+  }, 22000));
   setTimeout(() => { addCandidateBubble(pickFrom(MAREK[lang].icebreakers)); }, 1500);
 }
 
@@ -1284,6 +1338,7 @@ document.getElementById("chat-send").addEventListener("click", async () => {
   answers.act3.push(score10 / 10);
   addBubble(text, "me", score10);
   await candidateReply(text);
+  scheduleRivalNotif();
   if (msgCount >= MAX_CHAT_MSGS) {
     document.getElementById("act3-finish").classList.remove("hidden");
   }
@@ -1291,6 +1346,8 @@ document.getElementById("chat-send").addEventListener("click", async () => {
 });
 
 document.getElementById("act3-finish").addEventListener("click", () => {
+  act3Live = false;
+  clearRivalTimers();
   preloadSceneImg("assets/img/storm-city.svg");
   preloadClip("act4");
   renderAct4();
