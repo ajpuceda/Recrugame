@@ -25,6 +25,9 @@ const I18N = {
     prologueTitle: "Skalibruj swój radar, zanim zadzwoni telefon",
     prologueIntro: "Trzy testy po około minucie. Bez pytań i bez wyjaśnień — tylko twój instynkt. Na końcu dowiesz się, jaki typ łowcy jesteś.",
     prologueStart: "Kalibruję radar",
+    readyTitle: "Zanim zaczniesz",
+    readyBody: "Za chwilę trzy krótkie próby — około 3 minut. Bez pytań i bez wyjaśnień: tylko twój instynkt.\n\nZnajdź spokojne miejsce. Wycisz telefon. Weź spokojny oddech i skup się — obserwuj koło, oddychaj w jego rytmie.\n\nKiedy będziesz gotowy, naciśnij przycisk.",
+    readyBtn: "Jestem gotowy",
     signalTitle: "1 · Sygnał",
     signalHint: "Na każdej karcie jest JEDNA informacja, która się nie zgadza. Zaznacz ją, zanim skończy się czas.",
     signalHit: "Dobre oko!",
@@ -139,6 +142,9 @@ const I18N = {
     prologueTitle: "Calibra tu radar antes de que suene el teléfono",
     prologueIntro: "Tres pruebas de un minuto. Sin preguntas y sin explicaciones — solo tu instinto. Al final sabrás qué tipo de cazador eres.",
     prologueStart: "Calibrar mi radar",
+    readyTitle: "Antes de empezar",
+    readyBody: "En unos segundos vienen tres pruebas rápidas — unos 3 minutos. Sin preguntas y sin explicaciones: solo tu instinto.\n\nBusca un sitio tranquilo. Silencia el móvil. Respira con calma y concéntrate — sigue el ritmo del círculo mientras respira contigo.\n\nCuando estés listo, pulsa el botón.",
+    readyBtn: "Estoy listo",
     signalTitle: "1 · Señal",
     signalHint: "En cada ficha hay UN dato que no cuadra. Márkalo antes de que se acabe el tiempo.",
     signalHit: "¡Bien visto!",
@@ -253,6 +259,9 @@ const I18N = {
     prologueTitle: "Calibrate your radar before the phone rings",
     prologueIntro: "Three one-minute trials. No questions, no explanations — just your instinct. At the end, you'll know what kind of hunter you are.",
     prologueStart: "Calibrate my radar",
+    readyTitle: "Before you begin",
+    readyBody: "Three quick trials are coming — about 3 minutes. No questions, no explanations: just your instinct.\n\nFind a quiet spot. Silence your phone. Breathe calmly and focus — follow the circle's rhythm as it breathes with you.\n\nWhen you're ready, press the button.",
+    readyBtn: "I'm ready",
     signalTitle: "1 · Signal",
     signalHint: "Each card hides ONE detail that doesn't add up. Mark it before time runs out.",
     signalHit: "Sharp eye!",
@@ -671,7 +680,7 @@ const pgPumpBtn = document.getElementById("pg-pump");
 const pgBankBtn = document.getElementById("pg-bank");
 
 function pgShow(panel) {
-  ["pg-intro", "pg-signal", "pg-dilemma", "pg-hunch", "pg-result"].forEach(id => {
+  ["pg-intro", "pg-ready", "pg-signal", "pg-dilemma", "pg-hunch", "pg-result"].forEach(id => {
     document.getElementById(id).classList.add("hidden");
   });
   document.getElementById(panel).classList.remove("hidden");
@@ -708,8 +717,11 @@ function startPrologue() {
   pgShow("pg-intro");
 }
 
+/* --- 0 · Calma: prepárate antes de empezar --- */
+document.getElementById("pg-start").addEventListener("click", () => pgShow("pg-ready"));
+document.getElementById("pg-ready-btn").addEventListener("click", pgStartSignal);
+
 /* --- 1 · Señal --- */
-document.getElementById("pg-start").addEventListener("click", pgStartSignal);
 
 function pgStartSignal() {
   PG.sIdx = 0;
@@ -737,7 +749,7 @@ function pgNextCard() {
     r.addEventListener("click", () => pgSignalAnswer(i, card.flag, r));
     box.appendChild(r);
   });
-  pgRunTimer("pg-signal-timer", 5, () => pgSignalAnswer(-1, card.flag, null));
+  pgRunTimer("pg-signal-timer", 10, () => pgSignalAnswer(-1, card.flag, null));
 }
 
 function pgSignalAnswer(picked, flag, btn) {

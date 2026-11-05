@@ -273,6 +273,18 @@ body {
 .pg-hint { font-size: 14px; color: var(--text-dim); line-height: 1.5; margin-bottom: 14px; }
 .pg-intro-text { font-size: 15px; line-height: 1.6; color: var(--text-dim); margin-bottom: 20px; }
 
+/* Panel preparación: círculo de respiración */
+.pg-breathe {
+  width: 72px; height: 72px; margin: 10px auto 20px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,175,55,.35) 0%, rgba(212,175,55,.05) 70%);
+  border: 2px solid var(--gold);
+  animation: breathe 8s ease-in-out infinite;
+}
+@keyframes breathe {
+  0%, 100% { transform: scale(.72); box-shadow: 0 0 0 0 rgba(212,175,55,.18); }
+  40%, 60% { transform: scale(1.18); box-shadow: 0 0 28px 8px rgba(212,175,55,.32); }
+}
+
 /* Progreso de puntos */
 .pg-progress { display: flex; gap: 7px; margin-bottom: 12px; }
 .pg-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--green); flex-shrink: 0; transition: background .3s ease; }
