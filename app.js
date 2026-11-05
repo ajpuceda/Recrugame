@@ -59,12 +59,13 @@ const I18N = {
     greetName: "Miło mi, {name}!",
     processKicker: "Interludium · Strategia",
     processTitle: "Strategiczna obsada: ułóż proces we właściwej kolejności",
-    processHint: "Klient powierzył Ci strategiczną pozycję. Dotknij krok, potem drugi — zamienią się miejscami. Bez zegara: to test planowania.",
+    processHint: "Klient powierzył Ci strategiczną pozycję. Przytrzymaj krok i przeciągnij go na właściwe miejsce (albo dotknij dwóch, by je zamienić). Bez zegara: to test planowania.",
     processCheck: "Sprawdź moją strategię",
     processContinue: "Idziemy na rozmowę",
     processPerfect: "{n}/15 — perfekcyjnie! Klient mówi, że cały proces mógłby prowadzić Twoja agencja.",
     processGood: "{n}/15 — solidnie. Kolejność ma sens, choć kilka kroków mogłoby pójść wcześniej.",
     processWeak: "{n}/15 — klient ma wątpliwości. Kolejność procesu warta dopracowania.",
+    processDisp: "Łączne przesunięcie: {n} pozycji.",
     feedbackTitleP: "Interludium — Strategia procesu",
     processSteps: [
       "Kick-off z klientem: profil, kultura, priorytety",
@@ -210,12 +211,13 @@ const I18N = {
     greetName: "¡Encantado, {name}!",
     processKicker: "Interludio · La estrategia",
     processTitle: "Una posición estratégica: ordena el proceso de reclutamiento",
-    processHint: "El cliente te ha confiado una posición estratégica. Toca un paso y luego otro — se intercambian. Sin reloj: esto es un test de planificación.",
+    processHint: "El cliente te ha confiado una posición estratégica. Mantén pulsado un paso y arrástralo donde quieras (o toca dos para intercambiarlos). Sin reloj: esto es un test de planificación.",
     processCheck: "Comprobar mi estrategia",
     processContinue: "Vamos a la entrevista",
     processPerfect: "{n}/15 — ¡impecable! El cliente dice que toda tu agencia podría dirigir el proceso.",
     processGood: "{n}/15 — sólido. El orden tiene sentido, aunque algún paso podría ir antes.",
     processWeak: "{n}/15 — el cliente tiene dudas. El orden del proceso merece un repaso.",
+    processDisp: "Desplazamiento total: {n} posiciones.",
     feedbackTitleP: "Interludio — Estrategia del proceso",
     processSteps: [
       "Kick-off con el cliente: perfil, cultura, prioridades",
@@ -361,12 +363,13 @@ const I18N = {
     greetName: "Nice to meet you, {name}!",
     processKicker: "Interlude · The strategy",
     processTitle: "A strategic hire: put the process in the right order",
-    processHint: "The client trusted you with a strategic position. Tap one step, then another — they swap. No clock: this is a planning test.",
+    processHint: "The client trusted you with a strategic position. Press and hold a step to drag it into place (or tap two to swap them). No clock: this is a planning test.",
     processCheck: "Check my strategy",
     processContinue: "On to the interview",
     processPerfect: "{n}/15 — flawless! The client says your whole agency could run this process.",
     processGood: "{n}/15 — solid. The order makes sense, though a few steps could come earlier.",
     processWeak: "{n}/15 — the client has doubts. The process order is worth refining.",
+    processDisp: "Total displacement: {n} positions.",
     feedbackTitleP: "Interlude — Process strategy",
     processSteps: [
       "Kick-off with the client: profile, culture, priorities",
@@ -1102,7 +1105,7 @@ function answerAct2(idx) {
    El jugador ordena el proceso de reclutamiento de una posición
    estratégica: toca un paso y luego otro para intercambiarlos.
    Sin reloj — mide planificación. */ 
-const PC = { order: [], sel: -1, done: false, correct: 0 };
+const PC = { order: [], sel: -1, done: false, correct: 0, disp: 0 };
 
 function renderProcess() {
   PC.order = [...Array(15).keys()];
@@ -1113,6 +1116,7 @@ function renderProcess() {
   PC.sel = -1;
   PC.done = false;
   PC.correct = 0;
+  PC.disp = 0;
   drawProcess();
   document.getElementById("process-feedback").classList.add("hidden");
   document.getElementById("process-feedback-text").textContent = "";
@@ -1128,37 +1132,146 @@ function drawProcess() {
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "pstep" + (PC.sel === pos ? " sel" : "");
+    btn.dataset.step = stepIdx;
     btn.innerHTML = `<span class="pstep-num">${pos + 1}</span><span>${steps[stepIdx]}</span>`;
-    btn.addEventListener("click", () => processTap(pos, btn));
+    attachStepEvents(btn);
     wrap.appendChild(btn);
   });
 }
 
-function processTap(pos, btn) {
+/* ---- Interacción: toque rápido = intercambiar, mantener pulsado = arrastrar ---- */
+let drag = null;
+
+function attachStepEvents(btn) {
+  btn.addEventListener("pointerdown", (e) => {
+    if (PC.done || drag) return;
+    if (e.pointerType === "mouse" && e.button !== 0) return;
+    drag = { btn, x: e.clientX, y: e.clientY, active: false, cancel: false, timer: 0 };
+    drag.timer = setTimeout(beginDrag, 320);
+    e.preventDefault();
+  });
+}
+
+function beginDrag() {
+  if (!drag || drag.cancel) return;
+  drag.active = true;
+  PC.sel = -1;
+  document.querySelectorAll("#process-steps .pstep.sel").forEach(el => el.classList.remove("sel"));
+  drag.btn.classList.add("dragging");
+  if (navigator.vibrate) navigator.vibrate(15);
+}
+
+function renumberProcess() {
+  document.querySelectorAll("#process-steps .pstep").forEach((el, i) => {
+    el.querySelector(".pstep-num").textContent = i + 1;
+  });
+}
+
+function syncOrderFromDom() {
+  PC.order = [...document.querySelectorAll("#process-steps .pstep")].map(el => +el.dataset.step);
+}
+
+document.addEventListener("pointermove", (e) => {
+  if (!drag || drag.cancel) return;
+  if (!drag.active) {
+    if (Math.abs(e.clientY - drag.y) > 12 || Math.abs(e.clientX - drag.x) > 12) {
+      // se movió antes de la pulsación larga: cancela (el usuario está desplazando la página)
+      drag.cancel = true;
+      clearTimeout(drag.timer);
+    }
+    return;
+  }
+  // arrastre activo: reordena en vivo según la posición del puntero
+  const wrap = document.getElementById("process-steps");
+  const rows = [...wrap.querySelectorAll(".pstep:not(.dragging)")];
+  const target = rows.find(r => {
+    const b = r.getBoundingClientRect();
+    return e.clientY < b.top + b.height / 2;
+  });
+  if (target) wrap.insertBefore(drag.btn, target);
+  else wrap.appendChild(drag.btn);
+  renumberProcess();
+});
+
+document.addEventListener("pointerup", (e) => {
+  if (!drag) return;
+  clearTimeout(drag.timer);
+  const d = drag;
+  drag = null;
+  if (d.active) {
+    d.btn.classList.remove("dragging");
+    syncOrderFromDom();
+  } else if (!d.cancel) {
+    processTap(d.btn);
+  }
+});
+
+document.addEventListener("pointercancel", () => {
+  if (!drag) return;
+  clearTimeout(drag.timer);
+  if (drag.active) drag.btn.classList.remove("dragging");
+  drag = null;
+});
+
+/* En móvil: bloquea el scroll mientras se arrastra */
+document.addEventListener("touchmove", (e) => {
+  if (drag && drag.active) e.preventDefault();
+}, { passive: false });
+
+function processTap(btn) {
   if (PC.done) return;
+  const wrap = document.getElementById("process-steps");
+  const pos = [...wrap.children].indexOf(btn);
   if (PC.sel === -1) { PC.sel = pos; btn.classList.add("sel"); return; }
   if (PC.sel === pos) { PC.sel = -1; btn.classList.remove("sel"); return; }
-  [PC.order[PC.sel], PC.order[pos]] = [PC.order[pos], PC.order[PC.sel]];
+  // intercambia en el DOM los dos pasos seleccionados
+  const selBtn = wrap.children[PC.sel];
+  const marker = document.createElement("div");
+  wrap.insertBefore(marker, selBtn);
+  wrap.insertBefore(selBtn, btn);
+  wrap.insertBefore(btn, marker);
+  wrap.removeChild(marker);
   PC.sel = -1;
-  drawProcess();
+  renumberProcess();
+  syncOrderFromDom();
 }
 
 function checkProcess() {
   PC.done = true;
-  PC.correct = PC.order.reduce((acc, stepIdx, pos) => acc + (stepIdx === pos ? 1 : 0), 0);
+  syncOrderFromDom();
+  /* Evaluación por DESPLAZAMIENTO y ORDEN RELATIVO:
+     se puntúan los pares de etapas que están en el orden correcto
+     (105 pares en total). Así, si solo una etapa está mal colocada,
+     el resto del proceso — aunque se corra una posición — sigue
+     puntuando como correcto. El desplazamiento de cada paso se
+     muestra como ±N. */
+  const disp = PC.order.map((stepIdx, pos) => Math.abs(stepIdx - pos));
+  const totalDisp = disp.reduce((a, b) => a + b, 0);
+  PC.disp = totalDisp;
+  const posOf = [];
+  PC.order.forEach((stepIdx, pos) => { posOf[stepIdx] = pos; });
+  let goodPairs = 0;
+  for (let a = 0; a < 15; a++) {
+    for (let b = a + 1; b < 15; b++) {
+      if (posOf[a] < posOf[b]) goodPairs++;
+    }
+  }
+  PC.correct = Math.min(15, Math.floor(15 * goodPairs / 105));
   const steps = t("processSteps");
   const wrap = document.getElementById("process-steps");
   wrap.innerHTML = "";
   PC.order.forEach((stepIdx, pos) => {
-    const ok = stepIdx === pos;
+    const d = disp[pos];
+    const cls = d === 0 ? "ok" : d <= 2 ? "near" : "bad";
     const row = document.createElement("div");
-    row.className = "pstep " + (ok ? "ok" : "bad");
+    row.className = "pstep " + cls;
     row.innerHTML = `<span class="pstep-num">${pos + 1}</span><span>${steps[stepIdx]}</span>` +
-      (ok ? "" : `<span class="pstep-right">→ ${stepIdx + 1}</span>`);
+      (d === 0 ? `<span class="pstep-right">✓</span>` : `<span class="pstep-right">±${d}</span>`);
     wrap.appendChild(row);
   });
-  const key = PC.correct >= 13 ? "processPerfect" : PC.correct >= 9 ? "processGood" : "processWeak";
-  feedbacks.process = t(key).replace("{n}", PC.correct);
+  const key = PC.correct >= 14 ? "processPerfect" : PC.correct >= 9 ? "processGood" : "processWeak";
+  feedbacks.process = t(key).replace("{n}", PC.correct) +
+    (totalDisp > 0 ? " " + t("processDisp").replace("{n}", totalDisp) : "");
   document.getElementById("process-feedback-text").textContent = feedbacks.process;
   document.getElementById("process-feedback").classList.remove("hidden");
   document.getElementById("process-check").classList.add("hidden");
@@ -1711,7 +1824,7 @@ function sendLead(total) {
     act3_msgs: answers.act3.map(s => Math.round(s * 100)),
     act4: answers.act4,
     radar: PG.radarDone ? { ojo: PG.lastScores.ojo, temple: PG.lastScores.temple, apetito: PG.lastScores.apetito, archetype: PG.archetype } : null,
-    process: PC.done ? { correct: PC.correct, pct: Math.round(PC.correct / 15 * 100) } : null,
+    process: PC.done ? { score: PC.correct, displacement: PC.disp, pairs: Math.round(PC.correct / 15 * 100) } : null,
     consent_privacy: privacyChk.checked,
     consent_marketing: document.getElementById("consent-marketing").checked,
     lang,
