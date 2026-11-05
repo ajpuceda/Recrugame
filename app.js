@@ -53,6 +53,36 @@ const I18N = {
     radarHook: "Twój radar wyłapał sygnał w szumie: Marek, Data Engineer, Warszawa. Za chwilę zadzwoni telefon.",
     radarCta: "Odebrać połączenie",
     prologueAudioLabel: "Odsłuchaj sygnał radaru",
+    showCardBtn: "▶ Pokaż kartę (czas startuje teraz)",
+    showOptionsBtn: "▶ Pokaż odpowiedzi (czas startuje teraz)",
+    act3Brief: "Uwaga: Marek właśnie dostaje oferty z innych firm — inna agencja już do niego dzwoniła. Twoja misja: odkryć szczegóły, które ukrywa — czy naprawdę prowadził tę migrację sam i ile naprawdę trwała. Masz 4 pytania.",
+    greetName: "Miło mi, {name}!",
+    processKicker: "Interludium · Strategia",
+    processTitle: "Strategiczna obsada: ułóż proces we właściwej kolejności",
+    processHint: "Klient powierzył Ci strategiczną pozycję. Dotknij krok, potem drugi — zamienią się miejscami. Bez zegara: to test planowania.",
+    processCheck: "Sprawdź moją strategię",
+    processContinue: "Idziemy na rozmowę",
+    processPerfect: "{n}/15 — perfekcyjnie! Klient mówi, że cały proces mógłby prowadzić Twoja agencja.",
+    processGood: "{n}/15 — solidnie. Kolejność ma sens, choć kilka kroków mogłoby pójść wcześniej.",
+    processWeak: "{n}/15 — klient ma wątpliwości. Kolejność procesu warta dopracowania.",
+    feedbackTitleP: "Interludium — Strategia procesu",
+    processSteps: [
+      "Kick-off z klientem: profil, kultura, priorytety",
+      "Uzgodnienie procesu, terminów i widełek z klientem",
+      "Scorecard: obiektywne kryteria oceny",
+      "Przeszukanie własnej bazy kandydatów",
+      "Aktywny sourcing: X-Ray na LinkedIn i Google",
+      "Publikacja oferty na LinkedIn",
+      "Prośba o referencje: sieć wewnętrzna i headhunterzy",
+      "Screening CV: z long-listy na short-listę",
+      "Rozmowy rekrutacyjne 15–20 min",
+      "Pierwsza pogłębiona rozmowa (Twoja)",
+      "Prezentacja teczek finalistów klientowi",
+      "Druga rozmowa: kandydat–klient (techniczna i kulturowa)",
+      "Uporządkowany feedback obu stron",
+      "Kontrpropozycje i negocjacje",
+      "Zamknięcie, onboarding i follow-up 30/60/90"
+    ],
     act1Kicker: "Akt 1 · Brief",
     act1Title: "Noc. Twój telefon dzwoni.",
     playBrief: "Odsłuchaj wiadomość od klienta",
@@ -63,7 +93,7 @@ const I18N = {
     declineMsg: "Klient dzwoni do następnego headhuntera… Spróbuj jeszcze raz!",
     act2Kicker: "Akt 2 · Poszukiwanie",
     act2MailSubject: "pilne: Data Engineer (Spark) — Warszawa",
-    act2MailBody: "Cześć,\npotrzebuję senior Data Engineera z doświadczeniem w Apache Spark. Lokalizacja: Warszawa (lub remote). Start w 3 tygodnie.\nLinkedIn nic nie pokazuje — znajdź kogoś przez X-Ray.\n— Anna",
+    act2MailBody: "Cześć{name},\npotrzebuję senior Data Engineera z doświadczeniem w Apache Spark. Lokalizacja: Warszawa (lub remote). Start w 3 tygodnie.\nLinkedIn nic nie pokazuje — znajdź kogoś przez X-Ray.\n— Anna",
     clientReplySubject: "Re: pilne: Data Engineer (Spark)",
     question1: "Które wyszukiwanie X-Ray w Google jest najlepsze?",
     options1: [
@@ -121,7 +151,7 @@ const I18N = {
     feedbackAiFallback: "Nie udało się połączyć z serwerem oceniającym — przyznano neutralną średnią punktację.",
     letterCaught: "I jeszcze jedno: świetne oko. Wyciągnąłeś z Marka prawdę o zespole i terminach migracji — niewielu rekruterów to zauważa.",
     letterMissed: "Mała wskazówka na przyszłość: Marek nie był w tym projekcie tak samodzielny, jak twierdził. Sprawdzaj takich kandydatów pytaniami o zespół, liczby i role.",
-    demoLetter: "Dziękuję za przeprowadzenie tej rekrutacji. Twój sposób myślenia był bardzo wartościowy — wrócimy do Ciebie przy następnej trudnej obsadzie.",
+    demoLetter: "Dziękuję{name} za przeprowadzenie tej rekrutacji. Twój sposób myślenia był bardzo wartościowy — wrócimy do Ciebie przy następnej trudnej obsadzie.",
     privacyTitle: "Polityka prywatności",
     privacyBody: `<p><strong>Administrator danych:</strong> [TU FIRMA], e-mail kontaktowy: [EMAIL].</p>
 <p><strong>Zbierane dane:</strong> imię (opcjonalnie), adres e-mail, odpowiedzi w teście oraz znaczniki czasu.</p>
@@ -174,6 +204,36 @@ const I18N = {
     radarHook: "Tu radar ha detectado una señal en el ruido: Marek, Data Engineer, Varsovia. En unos segundos sonará el teléfono.",
     radarCta: "Contestar la llamada",
     prologueAudioLabel: "Escuchar la señal del radar",
+    showCardBtn: "▶ Mostrar la ficha (el tiempo empieza ahora)",
+    showOptionsBtn: "▶ Mostrar las respuestas (el tiempo empieza ahora)",
+    act3Brief: "Ojo: Marek está recibiendo ofertas de otras empresas — otra agencia ya lo ha llamado. Tu misión: descubrir los detalles que esconde — ¿dirigió de verdad esa migración solo? ¿cuánto tardó realmente? Tienes 4 preguntas.",
+    greetName: "¡Encantado, {name}!",
+    processKicker: "Interludio · La estrategia",
+    processTitle: "Una posición estratégica: ordena el proceso de reclutamiento",
+    processHint: "El cliente te ha confiado una posición estratégica. Toca un paso y luego otro — se intercambian. Sin reloj: esto es un test de planificación.",
+    processCheck: "Comprobar mi estrategia",
+    processContinue: "Vamos a la entrevista",
+    processPerfect: "{n}/15 — ¡impecable! El cliente dice que toda tu agencia podría dirigir el proceso.",
+    processGood: "{n}/15 — sólido. El orden tiene sentido, aunque algún paso podría ir antes.",
+    processWeak: "{n}/15 — el cliente tiene dudas. El orden del proceso merece un repaso.",
+    feedbackTitleP: "Interludio — Estrategia del proceso",
+    processSteps: [
+      "Kick-off con el cliente: perfil, cultura, prioridades",
+      "Acordar con el cliente proceso, plazos y rango salarial",
+      "Scorecard: criterios objetivos de evaluación",
+      "Buscar en tu base de datos interna",
+      "Sourcing activo: X-Ray en LinkedIn y Google",
+      "Publicar la oferta en LinkedIn",
+      "Pedir referencias: red interna y otros headhunters",
+      "Screening de CVs: de long-list a short-list",
+      "Llamadas de cribado 15–20 min",
+      "Primera entrevista en profundidad (tuya)",
+      "Presentar los dossieres de los finalistas al cliente",
+      "Segunda entrevista: candidato–cliente (técnica y cultural)",
+      "Feedback estructurado de ambas partes",
+      "Contraofertas y negociación",
+      "Cierre, onboarding y seguimiento 30/60/90"
+    ],
     act1Kicker: "Acto 1 · El brief",
     act1Title: "Noche. Suena tu teléfono.",
     playBrief: "Escuchar el mensaje del cliente",
@@ -184,7 +244,7 @@ const I18N = {
     declineMsg: "El cliente llama al siguiente headhunter… ¡Inténtalo de nuevo!",
     act2Kicker: "Acto 2 · La búsqueda",
     act2MailSubject: "urgente: Data Engineer (Spark) — Varsovia",
-    act2MailBody: "Hola,\nnecesito un Data Engineer senior con experiencia en Apache Spark. Ubicación: Varsovia (o remoto). Incorporación en 3 semanas.\nLinkedIn no muestra nada — encuéntrame a alguien con X-Ray.\n— Anna",
+    act2MailBody: "Hola{name},\nnecesito un Data Engineer senior con experiencia en Apache Spark. Ubicación: Varsovia (o remoto). Incorporación en 3 semanas.\nLinkedIn no muestra nada — encuéntrame a alguien con X-Ray.\n— Anna",
     clientReplySubject: "Re: urgente: Data Engineer (Spark)",
     question1: "¿Qué búsqueda X-Ray en Google es la mejor?",
     options1: [
@@ -242,7 +302,7 @@ const I18N = {
     feedbackAiFallback: "No se pudo conectar con el servidor de evaluación — se otorga una puntuación media neutral.",
     letterCaught: "Y una cosa más: buen ojo. Le sacaste a Marek la verdad sobre el equipo y los plazos de la migración — pocos reclutadores lo pillan.",
     letterMissed: "Un apunte para la próxima: Marek no era tan solo en ese proyecto como decía. Verifica a este tipo de candidatos con preguntas sobre el equipo, los números y su rol.",
-    demoLetter: "Gracias por liderar este proceso de selección. Tu forma de pensar aportó mucho valor — volveremos a ti en la próxima vacante difícil.",
+    demoLetter: "Gracias{name} por liderar este proceso de selección. Tu forma de pensar aportó mucho valor — volveremos a ti en la próxima vacante difícil.",
     privacyTitle: "Política de privacidad",
     privacyBody: `<p><strong>Responsable del tratamiento:</strong> [TU EMPRESA], correo de contacto: [EMAIL].</p>
 <p><strong>Datos recogidos:</strong> nombre (opcional), correo electrónico, respuestas del test y marcas de tiempo.</p>
@@ -295,6 +355,36 @@ const I18N = {
     radarHook: "Your radar just caught a signal in the noise: Marek, Data Engineer, Warsaw. The phone is about to ring.",
     radarCta: "Answer the call",
     prologueAudioLabel: "Play the radar signal",
+    showCardBtn: "▶ Show the card (the clock starts now)",
+    showOptionsBtn: "▶ Show the answers (the clock starts now)",
+    act3Brief: "Heads up: Marek is receiving offers from other companies — another agency has already called him. Your mission: uncover the details he's hiding — did he really run that migration alone? How long did it really take? You have 4 questions.",
+    greetName: "Nice to meet you, {name}!",
+    processKicker: "Interlude · The strategy",
+    processTitle: "A strategic hire: put the process in the right order",
+    processHint: "The client trusted you with a strategic position. Tap one step, then another — they swap. No clock: this is a planning test.",
+    processCheck: "Check my strategy",
+    processContinue: "On to the interview",
+    processPerfect: "{n}/15 — flawless! The client says your whole agency could run this process.",
+    processGood: "{n}/15 — solid. The order makes sense, though a few steps could come earlier.",
+    processWeak: "{n}/15 — the client has doubts. The process order is worth refining.",
+    feedbackTitleP: "Interlude — Process strategy",
+    processSteps: [
+      "Kick-off with the client: profile, culture, priorities",
+      "Agree process, timeline and salary range with the client",
+      "Scorecard: objective evaluation criteria",
+      "Search your internal candidate database",
+      "Active sourcing: X-Ray on LinkedIn and Google",
+      "Post the job on LinkedIn",
+      "Ask for referrals: internal network and other headhunters",
+      "CV screening: from long-list to short-list",
+      "Screening calls 15–20 min",
+      "First in-depth interview (yours)",
+      "Present finalist dossiers to the client",
+      "Second interview: candidate–client (technical and cultural)",
+      "Structured feedback from both sides",
+      "Counteroffers and negotiation",
+      "Close, onboarding and 30/60/90 follow-up"
+    ],
     act1Kicker: "Act 1 · The brief",
     act1Title: "Night. Your phone rings.",
     playBrief: "Play the client's message",
@@ -305,7 +395,7 @@ const I18N = {
     declineMsg: "The client calls the next headhunter… Try again!",
     act2Kicker: "Act 2 · The search",
     act2MailSubject: "urgent: Data Engineer (Spark) — Warsaw",
-    act2MailBody: "Hi,\nI need a senior Data Engineer with Apache Spark experience. Location: Warsaw (or remote). Start in 3 weeks.\nLinkedIn shows nothing — find me someone via X-Ray.\n— Anna",
+    act2MailBody: "Hi{name},\nI need a senior Data Engineer with Apache Spark experience. Location: Warsaw (or remote). Start in 3 weeks.\nLinkedIn shows nothing — find me someone via X-Ray.\n— Anna",
     clientReplySubject: "Re: urgent: Data Engineer (Spark)",
     question1: "Which Google X-Ray search is the best?",
     options1: [
@@ -363,7 +453,7 @@ const I18N = {
     feedbackAiFallback: "Could not reach the grading server — a neutral average score was awarded.",
     letterCaught: "And one more thing: sharp eye. You got the truth out of Marek about the team and the migration timeline — few recruiters catch that.",
     letterMissed: "A tip for next time: Marek wasn't as alone on that project as he claimed. Vet these candidates with questions about the team, the numbers and their role.",
-    demoLetter: "Thank you for running this hiring process. Your way of thinking added real value — we'll come back to you for the next hard-to-fill role.",
+    demoLetter: "Thank you{name} for running this hiring process. Your way of thinking added real value — we'll come back to you for the next hard-to-fill role.",
     privacyTitle: "Privacy Policy",
     privacyBody: `<p><strong>Data controller:</strong> [TU EMPRESA], contact email: [EMAIL].</p>
 <p><strong>Data collected:</strong> name (optional), email address, test answers and timestamps.</p>
@@ -378,7 +468,7 @@ const I18N = {
 
 let lang = localStorage.getItem("hh_lang") || "pl";
 let answers = { act2: null, act3: [], act4: null };
-let feedbacks = { act2: "", act3: "", act4: "" };
+let feedbacks = { act2: "", process: "", act3: "", act4: "" };
 let msgCount = 0;
 const MAX_CHAT_MSGS = 4;
 
@@ -386,9 +476,17 @@ function t(key) {
   return I18N[lang][key] !== undefined ? I18N[lang][key] : I18N.pl[key];
 }
 
+/* Sustituye {name} por el nombre del formulario (vacío si no hay) */
+function fillName(s) {
+  const n = document.getElementById("input-name").value.trim();
+  return String(s).replace(/\s*\{name\}/g, n ? " " + n : "");
+}
+
 function applyLang() {
   document.documentElement.lang = lang;
-  document.querySelectorAll("[data-i18n]").forEach(el => { el.textContent = t(el.dataset.i18n); });
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    el.textContent = el.dataset.i18n === "act2MailBody" ? fillName(t("act2MailBody")) : t(el.dataset.i18n);
+  });
   document.getElementById("lang-pl").classList.toggle("active", lang === "pl");
   document.getElementById("lang-es").classList.toggle("active", lang === "es");
   document.getElementById("lang-en").classList.toggle("active", lang === "en");
@@ -747,21 +845,37 @@ function pgNextCard() {
   const card = cards[PG.sIdx];
   pgProgress("pg-signal-progress", PG.sIdx, cards.length);
   document.getElementById("pg-signal-feedback").textContent = "";
+  const bar = document.getElementById("pg-signal-timer");
+  bar.style.transition = "none";
+  bar.style.width = "100%";
   const box = document.getElementById("pg-card");
   box.innerHTML = "";
   const name = document.createElement("p");
   name.className = "pg-card-name";
   name.textContent = card.name;
   box.appendChild(name);
-  card.rows.forEach((row, i) => {
-    const r = document.createElement("button");
-    r.type = "button";
-    r.className = "pg-card-row";
-    r.textContent = row;
-    r.addEventListener("click", () => pgSignalAnswer(i, card.flag, r));
-    box.appendChild(r);
+  // Las filas no aparecen hasta que el jugador revela: primero lee las instrucciones
+  const reveal = document.createElement("button");
+  reveal.type = "button";
+  reveal.className = "btn small primary";
+  reveal.textContent = t("showCardBtn");
+  reveal.addEventListener("click", () => {
+    box.innerHTML = "";
+    const nm = document.createElement("p");
+    nm.className = "pg-card-name";
+    nm.textContent = card.name;
+    box.appendChild(nm);
+    card.rows.forEach((row, i) => {
+      const r = document.createElement("button");
+      r.type = "button";
+      r.className = "pg-card-row";
+      r.textContent = row;
+      r.addEventListener("click", () => pgSignalAnswer(i, card.flag, r));
+      box.appendChild(r);
+    });
+    pgRunTimer("pg-signal-timer", 10, () => pgSignalAnswer(-1, card.flag, null));
   });
-  pgRunTimer("pg-signal-timer", 10, () => pgSignalAnswer(-1, card.flag, null));
+  box.appendChild(reveal);
 }
 
 function pgSignalAnswer(picked, flag, btn) {
@@ -797,18 +911,30 @@ function pgNextDilemma() {
   pgProgress("pg-dilemma-progress", PG.dIdx, list.length);
   document.getElementById("pg-dilemma-feedback").textContent = "";
   document.getElementById("pg-dilemma-text").textContent = d.text;
+  const bar = document.getElementById("pg-dilemma-timer");
+  bar.style.transition = "none";
+  bar.style.width = "100%";
   const opts = document.getElementById("pg-dilemma-options");
   opts.innerHTML = "";
-  const order = Math.random() < .5 ? [0, 1] : [1, 0];
-  order.forEach(oi => {
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "option";
-    btn.textContent = d.opts[oi];
-    btn.addEventListener("click", () => pgDilemmaAnswer(oi === 0, btn));
-    opts.appendChild(btn);
+  // Las opciones no aparecen hasta que el jugador revela: primero lee el dilema
+  const reveal = document.createElement("button");
+  reveal.type = "button";
+  reveal.className = "btn small primary";
+  reveal.textContent = t("showOptionsBtn");
+  reveal.addEventListener("click", () => {
+    opts.innerHTML = "";
+    const order = Math.random() < .5 ? [0, 1] : [1, 0];
+    order.forEach(oi => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "option";
+      btn.textContent = d.opts[oi];
+      btn.addEventListener("click", () => pgDilemmaAnswer(oi === 0, btn));
+      opts.appendChild(btn);
+    });
+    pgRunTimer("pg-dilemma-timer", 10, () => pgDilemmaAnswer(null, null));
   });
-  pgRunTimer("pg-dilemma-timer", 10, () => pgDilemmaAnswer(null, null));
+  opts.appendChild(reveal);
 }
 
 function pgDilemmaAnswer(isGood, btn) {
@@ -967,12 +1093,85 @@ function answerAct2(idx) {
   document.getElementById("act2-client-text").textContent = feedbacks.act2;
   document.getElementById("act2-client-reply").classList.remove("hidden");
   document.getElementById("act2-next").onclick = () => {
-    preloadSceneImg("assets/img/video-call.svg");
-    preloadSceneImg("assets/img/candidate.svg");
-    preloadClip("act3");
-    startAct3();
+    renderProcess();
+    showScreen("scene-process");
   };
 }
+
+/* ============ INTERLUDIO: LA ESTRATEGIA (15 pasos) ============
+   El jugador ordena el proceso de reclutamiento de una posición
+   estratégica: toca un paso y luego otro para intercambiarlos.
+   Sin reloj — mide planificación. */ 
+const PC = { order: [], sel: -1, done: false, correct: 0 };
+
+function renderProcess() {
+  PC.order = [...Array(15).keys()];
+  for (let i = PC.order.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [PC.order[i], PC.order[j]] = [PC.order[j], PC.order[i]];
+  }
+  PC.sel = -1;
+  PC.done = false;
+  PC.correct = 0;
+  drawProcess();
+  document.getElementById("process-feedback").classList.add("hidden");
+  document.getElementById("process-feedback-text").textContent = "";
+  document.getElementById("process-check").classList.remove("hidden");
+  document.getElementById("process-continue").classList.add("hidden");
+}
+
+function drawProcess() {
+  const wrap = document.getElementById("process-steps");
+  wrap.innerHTML = "";
+  const steps = t("processSteps");
+  PC.order.forEach((stepIdx, pos) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "pstep" + (PC.sel === pos ? " sel" : "");
+    btn.innerHTML = `<span class="pstep-num">${pos + 1}</span><span>${steps[stepIdx]}</span>`;
+    btn.addEventListener("click", () => processTap(pos, btn));
+    wrap.appendChild(btn);
+  });
+}
+
+function processTap(pos, btn) {
+  if (PC.done) return;
+  if (PC.sel === -1) { PC.sel = pos; btn.classList.add("sel"); return; }
+  if (PC.sel === pos) { PC.sel = -1; btn.classList.remove("sel"); return; }
+  [PC.order[PC.sel], PC.order[pos]] = [PC.order[pos], PC.order[PC.sel]];
+  PC.sel = -1;
+  drawProcess();
+}
+
+function checkProcess() {
+  PC.done = true;
+  PC.correct = PC.order.reduce((acc, stepIdx, pos) => acc + (stepIdx === pos ? 1 : 0), 0);
+  const steps = t("processSteps");
+  const wrap = document.getElementById("process-steps");
+  wrap.innerHTML = "";
+  PC.order.forEach((stepIdx, pos) => {
+    const ok = stepIdx === pos;
+    const row = document.createElement("div");
+    row.className = "pstep " + (ok ? "ok" : "bad");
+    row.innerHTML = `<span class="pstep-num">${pos + 1}</span><span>${steps[stepIdx]}</span>` +
+      (ok ? "" : `<span class="pstep-right">→ ${stepIdx + 1}</span>`);
+    wrap.appendChild(row);
+  });
+  const key = PC.correct >= 13 ? "processPerfect" : PC.correct >= 9 ? "processGood" : "processWeak";
+  feedbacks.process = t(key).replace("{n}", PC.correct);
+  document.getElementById("process-feedback-text").textContent = feedbacks.process;
+  document.getElementById("process-feedback").classList.remove("hidden");
+  document.getElementById("process-check").classList.add("hidden");
+  document.getElementById("process-continue").classList.remove("hidden");
+}
+
+document.getElementById("process-check").addEventListener("click", checkProcess);
+document.getElementById("process-continue").addEventListener("click", () => {
+  preloadSceneImg("assets/img/video-call.svg");
+  preloadSceneImg("assets/img/candidate.svg");
+  preloadClip("act3");
+  startAct3();
+});
 
 /* ============ ACTO 3: MOTOR DEL CANDIDATO (demo) ============
    Marek tiene MEMORIA (no repite temas), ESTADO DE ÁNIMO (reacciona
@@ -995,8 +1194,8 @@ const MAREK = {
       "Tak z ciekawości: ta rola jest pod konkretny projekt, czy stała?",
       "Aha, i jeśli pytasz o terminy — mogę zacząć nawet za dwa tygodnie."
     ],
-    warm: ["Dobre pytanie — ", "O, wreszcie ktoś pyta o szczegóły! ", "Nikt wcześniej o to nie zapytał, ale… "],
-    cold: ["Krótko: ", "Nie mam całego dnia. ", "Bez ogródek: "],
+    warm: ["😄 Dobre pytanie — ", "🔥 O, wreszcie ktoś pyta o szczegóły! ", "😎 Nikt wcześniej o to nie zapytał, ale… "],
+    cold: ["😬 Krótko: ", "⏱️ Nie mam całego dnia. ", "🤨 Bez ogródek: "],
     repeat: [
       "Już o tym mówiłem — w skrócie: tak samo jak poprzednio. Coś jeszcze?",
       "To już padło. Zadam pytanie inaczej: co jeszcze chcesz wiedzieć?",
@@ -1017,13 +1216,13 @@ const MAREK = {
     topics: [
       { id: "team", rx: /(zesp[oó]|team|os[oó]b|koleg|sami|samodzielnie|obok)/i,
         replies: [
-          "Zespół? Były cztery osoby, ale architektura i kluczowe decyzje były moje. Reszta głównie wdrażała to, co zaprojektowałem.",
-          "Szczerze? Pracowałem z trzema innymi inżynierami. Ja projektowałem, oni wdrażali. Ale migracja była i jest moja."
+          "Zespół? 😅 Dobra, szczerze: były cztery osoby, ale architektura i kluczowe decyzje — moje. Reszta głównie wdrażała to, co zaprojektowałem.",
+          "🤫 Szczerze? Pracowałem z trzema innymi inżynierami. Ja projektowałem, oni wdrażali. Ale migracja była i jest moja! 😎"
         ] },
       { id: "numbers", rx: /(ile|jak długo|jak dlugo|miesi[ąa]c|tygodni|liczb|metr|%|procent|terabajt|tb)/i,
         replies: [
-          "Migracja trwała… sześć miesięcy. Dłużej niż plan, ale zero przestojów na produkcji. Przenieśliśmy około czterdziestu terabajtów.",
-          "Liczb? Około czterdzieści terabajtów danych i sześć miesięcy pracy. Plan mówił trzy miesiące — ale plan to plan."
+          "Migracja trwała… 😬 sześć miesięcy. Dłużej niż plan, ale zero przestojów na produkcji! Przenieśliśmy około czterdziestu terabajtów.",
+          "Liczb? 😅 Około 40 terabajtów danych i… sześć miesięcy pracy. Plan mówił trzy miesiące — ale plan to plan, nie? 😏"
         ] },
       { id: "salary", rx: /(pensj|stawk|wynagrodz|pieni|widełk|budżet|budget|b2b|oczekiwan|finansow|zarobk|zarab)/i,
         replies: [
@@ -1063,8 +1262,8 @@ const MAREK = {
       "Por curiosidad: ¿el rol es para un proyecto concreto o fijo?",
       "Ah, y si preguntas por fechas: podría empezar incluso en dos semanas."
     ],
-    warm: ["Buena pregunta — ", "¡Por fin alguien pregunta por los detalles! ", "Nadie me lo había preguntado antes, pero… "],
-    cold: ["Corto: ", "No tengo todo el día. ", "Sin rodeos: "],
+    warm: ["😄 ¡Buena pregunta! ", "🔥 ¡Por fin alguien pregunta por los detalles! ", "😎 Nadie me lo había preguntado antes, pero… "],
+    cold: ["😬 Corto: ", "⏱️ No tengo todo el día. ", "🤨 Sin rodeos: "],
     repeat: [
       "Eso ya te lo he contado — en resumen: igual que antes. ¿Algo más?",
       "Esto ya ha salido. Te lo pregunto de otra forma: ¿qué más quieres saber?",
@@ -1085,13 +1284,13 @@ const MAREK = {
     topics: [
       { id: "team", rx: /(equipo|gente|personas|compañ|colega|solo|sola|solas)/i,
         replies: [
-          "¿El equipo? Fuimos 4 personas, pero la arquitectura y las decisiones clave fueron mías. El resto se limitaba a ejecutar lo que yo diseñaba.",
-          "¿Sinceramente? Trabajé con otros tres ingenieros. Yo diseñaba, ellos implementaban. Pero la migración fue mía."
+          "¿El equipo? 😅 Vale, te lo confieso: fuimos 4 personas, pero la arquitectura y las decisiones clave — mías. El resto se limitaba a ejecutar lo que yo diseñaba.",
+          "🤫 ¿Sinceramente? Trabajé con otros tres ingenieros. Yo diseñaba, ellos implementaban. ¡Pero la migración fue mía! 😎"
         ] },
       { id: "numbers", rx: /(cu[áa]nt|duraci|meses|semanas|n[úu]mero|datos|terabyte|tb|%|por ciento|metric)/i,
         replies: [
-          "La migración duró… seis meses. Más de lo previsto, pero cero caídas en producción. Migramos unos cuarenta terabytes.",
-          "¿Números? Unos 40 terabytes de datos y seis meses de trabajo. El plan decía tres meses — pero un plan es un plan."
+          "La migración duró… 😬 seis meses. Más de lo previsto, ¡pero cero caídas en producción! Migramos unos cuarenta terabytes.",
+          "¿Números? 😅 Unos 40 terabytes de datos y… seis meses de trabajo. El plan decía tres meses — pero un plan es un plan, ¿no? 😏"
         ] },
       { id: "salary", rx: /(salario|sueldo|pretension|rango|dinero|b2b|bruto)/i,
         replies: [
@@ -1131,8 +1330,8 @@ const MAREK = {
       "Out of curiosity: is this role for a specific project, or permanent?",
       "Oh, and if you're wondering about timing — I could start in as little as two weeks."
     ],
-    warm: ["Good question — ", "Ah, finally someone asks about the details! ", "Nobody asked me that before, but… "],
-    cold: ["Short version: ", "I don't have all day. ", "Straight to the point: "],
+    warm: ["😄 Good question — ", "🔥 Ah, finally someone asks about the details! ", "😎 Nobody asked me that before, but… "],
+    cold: ["😬 Short version: ", "⏱️ I don't have all day. ", "🤨 Straight up: "],
     repeat: [
       "I already told you — short version: same as before. Anything else?",
       "That's been covered. Let me put it differently: what else do you want to know?",
@@ -1153,13 +1352,13 @@ const MAREK = {
     topics: [
       { id: "team", rx: /(team|people|colleagues|yourself|alone|solo|members)/i,
         replies: [
-          "The team? There were 4 of us, but the architecture and key decisions were mine. The rest mostly implemented what I designed.",
-          "Honestly? I worked with three other engineers. I designed, they implemented. But the migration was still mine."
+          "The team? 😅 Okay, honest confession: there were 4 of us, but the architecture and key decisions — mine. The rest mostly implemented what I designed.",
+          "🤫 Honestly? I worked with three other engineers. I designed, they implemented. But the migration was still mine! 😎"
         ] },
       { id: "numbers", rx: /(how (many|long)|months|weeks|numbers|metrics|terabyte|tb|%|percent|duration)/i,
         replies: [
-          "The migration took… six months. Longer than planned, but zero production downtime. We moved around forty terabytes.",
-          "Numbers? About 40 terabytes of data and six months of work. The plan said three months — but plans are plans."
+          "The migration took… 😬 six months. Longer than planned, but zero production downtime! We moved around forty terabytes.",
+          "Numbers? 😅 About 40 terabytes of data and… six months of work. The plan said three months — but plans are plans, right? 😏"
         ] },
       { id: "salary", rx: /(salary|pay|money|rate|b2b|expectations|compensation)/i,
         replies: [
@@ -1313,6 +1512,8 @@ function startAct3() {
   document.getElementById("act3-finish").classList.add("hidden");
   document.getElementById("chat-send").disabled = false;
   addBubble(t("candidateGreeting"), "them");
+  const pName = document.getElementById("input-name").value.trim();
+  if (pName) addBubble(fillName(t("greetName")), "them");
   showScreen("scene-act3");
   // si el jugador se queda quieto, la presión llega sola
   rivalTimers.push(setTimeout(() => {
@@ -1449,7 +1650,7 @@ function rankFor(score) {
 /* La carta del veredicto reacciona a si descubriste el secreto de Marek */
 function demoLetterText() {
   const found = marekAsked.includes("team") || marekAsked.includes("numbers") || marekAsked.includes("lead");
-  return t("demoLetter") + " " + t(found ? "letterCaught" : "letterMissed");
+  return fillName(t("demoLetter")) + " " + t(found ? "letterCaught" : "letterMissed");
 }
 
 async function showEpilogue() {
@@ -1461,6 +1662,7 @@ async function showEpilogue() {
   fb.innerHTML = "";
   const act3Avg = answers.act3.length ? Math.round(answers.act3.reduce((a, b) => a + b, 0) / answers.act3.length * 100) : 0;
   [["feedbackTitle1", feedbacks.act2],
+   ["feedbackTitleP", feedbacks.process],
    ["feedbackTitle2", `★ ${act3Avg}/100`],
    ["feedbackTitle3", feedbacks.act4]].forEach(([titleKey, text]) => {
     const div = document.createElement("div");
@@ -1509,6 +1711,7 @@ function sendLead(total) {
     act3_msgs: answers.act3.map(s => Math.round(s * 100)),
     act4: answers.act4,
     radar: PG.radarDone ? { ojo: PG.lastScores.ojo, temple: PG.lastScores.temple, apetito: PG.lastScores.apetito, archetype: PG.archetype } : null,
+    process: PC.done ? { correct: PC.correct, pct: Math.round(PC.correct / 15 * 100) } : null,
     consent_privacy: privacyChk.checked,
     consent_marketing: document.getElementById("consent-marketing").checked,
     lang,

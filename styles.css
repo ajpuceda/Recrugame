@@ -346,3 +346,24 @@ body {
 }
 @keyframes systemPulse { from { border-color: rgba(224,102,102,.45); } to { border-color: var(--danger); } }
 
+
+/* ===================== v6 · INTERLUDIO: LA ESTRATEGIA ===================== */
+.process-steps { display: flex; flex-direction: column; gap: 8px; margin: 14px 0; }
+.pstep {
+  display: flex; align-items: center; gap: 10px; padding: 10px 12px;
+  background: var(--bg-panel); border: 1px solid var(--green); border-radius: 10px;
+  color: var(--text); font-size: 14px; line-height: 1.35; text-align: left; cursor: pointer;
+  transition: border-color .2s ease, background .2s ease;
+}
+.pstep:hover:not(.ok):not(.bad) { border-color: var(--gold); }
+.pstep-num {
+  flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%;
+  border: 1px solid var(--gold); color: var(--gold-light);
+  display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700;
+}
+.pstep.sel { border-color: var(--gold); background: rgba(212,175,55,.14); }
+.pstep.ok { border-color: var(--green-light); background: rgba(46,125,84,.18); }
+.pstep.bad { border-color: var(--danger); background: rgba(224,102,102,.14); }
+.pstep-right { margin-left: auto; color: var(--text-dim); font-size: 12px; white-space: nowrap; }
+#process-feedback { margin-bottom: 14px; }
+#process-continue { margin-top: 14px; }

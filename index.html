@@ -168,6 +168,22 @@
     </div>
   </section>
 
+  <!-- ============ INTERLUDIO: La Estrategia (15 pasos) ============ -->
+  <section id="scene-process" class="screen scene">
+    <div class="scene-bg kenburns"><img src="assets/img/radar-screen.svg" alt="" loading="lazy"></div>
+    <div class="scene-overlay">
+      <p class="scene-kicker" data-i18n="processKicker"></p>
+      <h2 class="scene-title" data-i18n="processTitle"></h2>
+      <p class="pg-hint" data-i18n="processHint"></p>
+      <div id="process-steps" class="process-steps"></div>
+      <div id="process-feedback" class="pg-feedback hidden">
+        <p id="process-feedback-text"></p>
+      </div>
+      <button id="process-check" class="btn primary" type="button" data-i18n="processCheck"></button>
+      <button id="process-continue" class="btn secondary hidden" type="button" data-i18n="processContinue"></button>
+    </div>
+  </section>
+
   <!-- ============ ACTO 3: La Entrevista (chat) ============ -->
   <section id="scene-act3" class="screen scene">
     <div class="scene-bg kenburns"><img src="assets/img/video-call.svg" alt="" loading="lazy"></div>
@@ -177,6 +193,7 @@
         <button class="btn small audio-play" type="button"><span class="play-icon">▶</span> <span data-i18n="act3AudioLabel"></span></button>
         <p class="subtitle" data-i18n="act3Subtitle"></p>
       </div>
+      <p id="act3-brief" class="tension" data-i18n="act3Brief"></p>
       <div class="chat-wrap">
         <div class="chat-side">
           <img id="candidate-avatar" src="assets/img/candidate.svg" alt="candidate" loading="lazy">
