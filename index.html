@@ -46,6 +46,70 @@
     </div>
   </section>
 
+  <!-- ============ PRÓLOGO: El Radar (antes del Acto 1) ============ -->
+  <section id="scene-prologue" class="screen scene">
+    <div class="scene-bg kenburns"><img src="assets/img/radar-screen.svg" alt="" loading="lazy"></div>
+    <div class="scene-overlay">
+      <p class="scene-kicker" data-i18n="prologueKicker"></p>
+
+      <!-- Panel intro -->
+      <div id="pg-intro" class="pg-panel">
+        <h2 class="scene-title" data-i18n="prologueTitle"></h2>
+        <p class="pg-intro-text" data-i18n="prologueIntro"></p>
+        <button id="pg-start" class="btn primary" type="button" data-i18n="prologueStart"></button>
+      </div>
+
+      <!-- Panel 1 · Señal -->
+      <div id="pg-signal" class="pg-panel hidden">
+        <h3 class="pg-title" data-i18n="signalTitle"></h3>
+        <p class="pg-hint" data-i18n="signalHint"></p>
+        <div id="pg-signal-progress" class="pg-progress"></div>
+        <div class="timer-bar"><i id="pg-signal-timer"></i></div>
+        <div id="pg-card" class="pg-card"></div>
+        <p id="pg-signal-feedback" class="pg-feedback"></p>
+      </div>
+
+      <!-- Panel 2 · Decisión relámpago -->
+      <div id="pg-dilemma" class="pg-panel hidden">
+        <h3 class="pg-title" data-i18n="dilemmaTitle"></h3>
+        <p class="pg-hint" data-i18n="dilemmaHint"></p>
+        <div id="pg-dilemma-progress" class="pg-progress"></div>
+        <div class="timer-bar"><i id="pg-dilemma-timer"></i></div>
+        <p id="pg-dilemma-text" class="pg-dilemma-text"></p>
+        <div id="pg-dilemma-options" class="options"></div>
+        <p id="pg-dilemma-feedback" class="pg-feedback"></p>
+      </div>
+
+      <!-- Panel 3 · La corazonada -->
+      <div id="pg-hunch" class="pg-panel hidden">
+        <h3 class="pg-title" data-i18n="hunchTitle"></h3>
+        <p class="pg-hint" data-i18n="hunchHint"></p>
+        <div id="pg-hunch-progress" class="pg-progress"></div>
+        <div class="pg-dossier">
+          <p id="pg-cand-name" class="pg-candidate-name"></p>
+          <p id="pg-quality" class="pg-quality"></p>
+        </div>
+        <div class="choice-row">
+          <button id="pg-pump" class="btn primary half" type="button" data-i18n="hunchPump"></button>
+          <button id="pg-bank" class="btn secondary half" type="button" data-i18n="hunchBank"></button>
+        </div>
+        <p id="pg-hunch-status" class="pg-feedback"></p>
+      </div>
+
+      <!-- Panel resultado: radar + arquetipo + gancho -->
+      <div id="pg-result" class="pg-panel hidden">
+        <h3 class="pg-title" data-i18n="radarTitle"></h3>
+        <div id="pg-radar"></div>
+        <p id="pg-archetype" class="pg-archetype"></p>
+        <div id="pg-audio-box" class="audio-box">
+          <button class="btn small audio-play" type="button"><span class="play-icon">▶</span> <span data-i18n="prologueAudioLabel"></span></button>
+          <p class="subtitle"><span data-i18n="radarHook"></span></p>
+        </div>
+        <button id="pg-continue" class="btn primary" type="button" data-i18n="radarCta"></button>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ ACTO 1: El Brief ============ -->
   <section id="scene-act1" class="screen scene">
     <div class="scene-bg kenburns"><img src="assets/img/office-night.svg" alt="" loading="eager"></div>

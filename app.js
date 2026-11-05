@@ -21,6 +21,35 @@ const I18N = {
     startBtn: "Rozpocznij historię",
     attemptsLeft: "Pozostałe próby dla tego adresu e-mail: {n}",
     attemptsExhausted: "Wykorzystałeś już wszystkie próby dla tego adresu e-mail.",
+    prologueKicker: "Prolog · Radar",
+    prologueTitle: "Skalibruj swój radar, zanim zadzwoni telefon",
+    prologueIntro: "Trzy testy po około minucie. Bez pytań i bez wyjaśnień — tylko twój instynkt. Na końcu dowiesz się, jaki typ łowcy jesteś.",
+    prologueStart: "Kalibruję radar",
+    signalTitle: "1 · Sygnał",
+    signalHint: "Na każdej karcie jest JEDNA informacja, która się nie zgadza. Zaznacz ją, zanim skończy się czas.",
+    signalHit: "Dobre oko!",
+    signalMiss: "To nie to.",
+    dilemmaTitle: "2 · Błyskawiczna decyzja",
+    dilemmaHint: "10 sekund na dylemat. Liczy się pierwsza odpowiedź.",
+    dilemmaTimeup: "Czas minął…",
+    hunchTitle: "3 · Przeczucie",
+    hunchHint: "Każde dodatkowe źródło poprawia teczkę, ale konkurencja też ma numer tego kandydata. Kiedy dzwonisz?",
+    hunchQuality: "Jakość teczki: {n}/6",
+    hunchPump: "🔎 Jedno źródło więcej",
+    hunchBank: "📞 Dzwoń teraz (zapisuję)",
+    hunchLost: "💨 Konkurencja zadzwoniła pierwsza. Teczka przepadła.",
+    hunchBanked: "✅ Teczka zapisana",
+    radarTitle: "Twój instynkt łowcy",
+    radarOjo: "Oko",
+    radarTemple: "Opanowanie",
+    radarApetito: "Apetyt",
+    archOjo: "🦅 Oko Orła",
+    archTemple: "⚖️ Stalowe Nerwy",
+    archApetito: "🎯 Krew Łowcy",
+    archBalanced: "🌟 Wyczulony Radar",
+    radarHook: "Twój radar wyłapał sygnał w szumie: Marek, Data Engineer, Warszawa. Za chwilę zadzwoni telefon.",
+    radarCta: "Odebrać połączenie",
+    prologueAudioLabel: "Odsłuchaj sygnał radaru",
     act1Kicker: "Akt 1 · Brief",
     act1Title: "Noc. Twój telefon dzwoni.",
     playBrief: "Odsłuchaj wiadomość od klienta",
@@ -106,6 +135,35 @@ const I18N = {
     startBtn: "Empezar la historia",
     attemptsLeft: "Intentos restantes para este correo: {n}",
     attemptsExhausted: "Ya has usado todos los intentos para este correo electrónico.",
+    prologueKicker: "Prólogo · El Radar",
+    prologueTitle: "Calibra tu radar antes de que suene el teléfono",
+    prologueIntro: "Tres pruebas de un minuto. Sin preguntas y sin explicaciones — solo tu instinto. Al final sabrás qué tipo de cazador eres.",
+    prologueStart: "Calibrar mi radar",
+    signalTitle: "1 · Señal",
+    signalHint: "En cada ficha hay UN dato que no cuadra. Márkalo antes de que se acabe el tiempo.",
+    signalHit: "¡Bien visto!",
+    signalMiss: "No era ese.",
+    dilemmaTitle: "2 · Decisión relámpago",
+    dilemmaHint: "10 segundos por dilema. Vale tu primera respuesta.",
+    dilemmaTimeup: "Se acabó el tiempo…",
+    hunchTitle: "3 · La corazonada",
+    hunchHint: "Cada fuente extra mejora el dossier, pero la competencia también tiene su número. ¿Cuándo llamas?",
+    hunchQuality: "Calidad del dossier: {n}/6",
+    hunchPump: "🔎 Una fuente más",
+    hunchBank: "📞 Llamar ya (guardar)",
+    hunchLost: "💨 La competencia llamó antes. Dossier perdido.",
+    hunchBanked: "✅ Dossier guardado",
+    radarTitle: "Tu instinto de cazador",
+    radarOjo: "Ojo",
+    radarTemple: "Temple",
+    radarApetito: "Apetito",
+    archOjo: "🦅 Ojo de Águila",
+    archTemple: "⚖️ Temple de Acero",
+    archApetito: "🎯 Sangre de Cazador",
+    archBalanced: "🌟 Radar Afinado",
+    radarHook: "Tu radar ha detectado una señal en el ruido: Marek, Data Engineer, Varsovia. En unos segundos sonará el teléfono.",
+    radarCta: "Contestar la llamada",
+    prologueAudioLabel: "Escuchar la señal del radar",
     act1Kicker: "Acto 1 · El brief",
     act1Title: "Noche. Suena tu teléfono.",
     playBrief: "Escuchar el mensaje del cliente",
@@ -191,6 +249,35 @@ const I18N = {
     startBtn: "Start the story",
     attemptsLeft: "Attempts left for this email: {n}",
     attemptsExhausted: "You have already used all attempts for this email address.",
+    prologueKicker: "Prologue · The Radar",
+    prologueTitle: "Calibrate your radar before the phone rings",
+    prologueIntro: "Three one-minute trials. No questions, no explanations — just your instinct. At the end, you'll know what kind of hunter you are.",
+    prologueStart: "Calibrate my radar",
+    signalTitle: "1 · Signal",
+    signalHint: "Each card hides ONE detail that doesn't add up. Mark it before time runs out.",
+    signalHit: "Sharp eye!",
+    signalMiss: "Not that one.",
+    dilemmaTitle: "2 · Lightning decision",
+    dilemmaHint: "10 seconds per dilemma. Your first answer counts.",
+    dilemmaTimeup: "Time's up…",
+    hunchTitle: "3 · The hunch",
+    hunchHint: "Every extra source improves the dossier — but the competition has their number too. When do you call?",
+    hunchQuality: "Dossier quality: {n}/6",
+    hunchPump: "🔎 One more source",
+    hunchBank: "📞 Call now (save)",
+    hunchLost: "💨 The competition called first. Dossier lost.",
+    hunchBanked: "✅ Dossier saved",
+    radarTitle: "Your hunter instinct",
+    radarOjo: "Eye",
+    radarTemple: "Nerve",
+    radarApetito: "Risk",
+    archOjo: "🦅 Eagle Eye",
+    archTemple: "⚖️ Iron Nerve",
+    archApetito: "🎯 Hunter's Blood",
+    archBalanced: "🌟 Tuned Radar",
+    radarHook: "Your radar just caught a signal in the noise: Marek, Data Engineer, Warsaw. The phone is about to ring.",
+    radarCta: "Answer the call",
+    prologueAudioLabel: "Play the radar signal",
     act1Kicker: "Act 1 · The brief",
     act1Title: "Night. Your phone rings.",
     playBrief: "Play the client's message",
@@ -340,8 +427,7 @@ document.getElementById("start-form").addEventListener("submit", e => {
   const email = emailInput.value.trim().toLowerCase();
   if (!isValidEmail(email) || !privacyChk.checked || getAttempts(email) >= CONFIG.MAX_ATTEMPTS) return;
   incrementAttempts(email);
-  preloadClip("act2");
-  showScreen("scene-act1");
+  startPrologue();
 });
 
 /* ============ AUDIO por escena (autoplay + botón de repetición) ============ */
@@ -373,6 +459,7 @@ function playSceneAudio(sceneId) {
   const box = document.querySelector("#" + sceneId + " .audio-box");
   if (!box) return;
   const clip = box.dataset.audio;
+  if (!clip) return; // el audio del prólogo se activa solo al mostrar el radar
   if (!audioAutoplayed.has(clip)) {
     audioAutoplayed.add(clip);
     playClip(clip);
@@ -398,6 +485,434 @@ document.getElementById("btn-decline").addEventListener("click", () => {
 
 function preloadSceneImg(src) { const img = new Image(); img.src = src; }
 function preloadClip(clip) { const a = new Audio(); a.preload = "auto"; a.src = clipSrc(clip); }
+
+/* ============ PRÓLOGO · EL RADAR (antes del Acto 1) ============
+   Tres micro-juegos de instinto: Señal (ojo), Decisión relámpago
+   (temple) y La corazonada (riesgo). Sin decirselo al jugador,
+   miden atención, juicio bajo presión y calibración de riesgo.
+   La señal que detecta su radar… es Marek. */
+const PG = {
+  ojo: 0, temple: 0, banked: 0,
+  sIdx: 0, dIdx: 0, hCand: 0, hPumps: 0,
+  timers: [],
+  radarDone: false, lastScores: null, archetype: null
+};
+
+const PG_CANDIDATES = ["Ania", "Bartek", "Cecylia"];
+const PG_RISK = [0.12, 0.24, 0.38, 0.54, 0.72, 0.88];
+const PG_OPTIMAL_BANK = 12; // 3 candidatos × 4 fuentes sensatas
+
+const PROLOGUE = {
+  pl: {
+    cards: [
+      { name: "Tomasz Lis", flag: 0, rows: [
+        "Data Engineer · Allegro · 2019–2015",
+        "Umiejętności: PySpark, Kafka, Airflow",
+        "Informatyka · Politechnika Warszawska · 2014",
+        "Warszawa · hybryda"
+      ] },
+      { name: "Anna Wójcik", flag: 1, rows: [
+        "Product Manager · 8 lat doświadczenia",
+        "Dyplom: 2020 · Executive MBA",
+        "Narzędzia: roadmap, SQL, Figma",
+        "Kraków · zdalnie"
+      ] },
+      { name: "Piotr Zieliński", flag: 2, rows: [
+        "CTO w starcie (5 osób)",
+        "Mocne strony: strategia, fundraising, Kubernetes",
+        "Kontakt: piotr.zielinski(at)example.com",
+        "Berlin · open to relocate"
+      ] },
+      { name: "Magda Kowalska", flag: 1, rows: [
+        "QA Automation Senior",
+        "Umiejętności: Selenium, Cypress, 'ręczne testy automatyczne'",
+        "ISTQB · 2016",
+        "Gdańsk · hybryda"
+      ] },
+      { name: "Jakub Kaczmarek", flag: 2, rows: [
+        "Lead Developer · 2021–2024",
+        "Stack: Java, Kotlin, Spring",
+        "Dostępność: od zaraz · 3 miesiące wypowiedzenia",
+        "Wrocław · hybryda"
+      ] },
+      { name: "Ewa Sadowska", flag: 2, rows: [
+        "Recruiter IT · 6 lat",
+        "Sourcing: X-Ray, boolean, ATS",
+        "Języki: cztery języki 'ojczyste'",
+        "Warszawa · zdalnie"
+      ] }
+    ],
+    dilemmas: [
+      { text: "Idealny kandydat pojawia się pierwszego dnia. Zamykasz proces?",
+        opts: ["Weryfikuję 2–3 kluczowe fakty. Potem prezentuję.", "Prezentuję klientowi od razu — niech nie ucieknie."] },
+      { text: "Były pracownik pisze na LinkedIn, że u twojego klienta 'zarządzanie to dramat'.",
+        opts: ["Sprawdzam to w kilku źródłach, zanim wyciągnę wnioski.", "Ignoruję — to tylko czyjaś opinia."] },
+      { text: "Świetne zdjęcie, topowa uczelnia… ale w CV dwie luki w zatrudnieniu.",
+        opts: ["Pytam o nie z szacunkiem, niczego nie zakładając.", "Przy takim profilu luki nie mają znaczenia."] },
+      { text: "Dwóch niemal identycznych kandydatów: jeden twój, drugi z innej agencji. Klient pyta: 'ten twój jest lepszy, nie?'.",
+        opts: ["Pokazuję dane o obu — decyzja należy do klienta.", "Jasne, że mój."] },
+      { text: "Klient naciska: 'bierz go dziś, bo jutro podpisze z konkurencją'. Zostało 12 godzin.",
+        opts: ["Weryfikuję kluczowe fakty i przygotowuję rozmowę — ze spokojem.", "Dzwonię teraz i pcham sprawę do przodu."] },
+      { text: "Wychodzi na to, że kandydat podkręcił swoje zarobki o 30%.",
+        opts: ["Rozmawiam z nim konkretnie, na faktach i bez oskarżeń.", "Nikt się nie dowie — zamykam proces i biorę prowizję."] }
+    ]
+  },
+  es: {
+    cards: [
+      { name: "Tomasz Lis", flag: 0, rows: [
+        "Data Engineer · Allegro · 2019–2015",
+        "Skills: PySpark, Kafka, Airflow",
+        "Informática · Politécnica de Varsovia · 2014",
+        "Varsovia · híbrido"
+      ] },
+      { name: "Anna Wójcik", flag: 1, rows: [
+        "Product Manager · 8 años de experiencia",
+        "Titulación: 2020 · Executive MBA",
+        "Herramientas: roadmap, SQL, Figma",
+        "Cracovia · remoto"
+      ] },
+      { name: "Piotr Zieliński", flag: 2, rows: [
+        "CTO en startup (5 personas)",
+        "Fortalezas: estrategia, fundraising, Kubernetes",
+        "Contacto: piotr.zielinski(arroba)example.com",
+        "Berlín · open to relocate"
+      ] },
+      { name: "Magda Kowalska", flag: 1, rows: [
+        "QA Automation Senior",
+        "Skills: Selenium, Cypress, 'testing manual automatizado'",
+        "ISTQB · 2016",
+        "Gdańsk · híbrido"
+      ] },
+      { name: "Jakub Kaczmarek", flag: 2, rows: [
+        "Lead Developer · 2021–2024",
+        "Stack: Java, Kotlin, Spring",
+        "Disponibilidad: inmediata · 3 meses de preaviso",
+        "Breslavia · híbrido"
+      ] },
+      { name: "Ewa Sadowska", flag: 2, rows: [
+        "Recruiter IT · 6 años",
+        "Sourcing: X-Ray, boolean, ATS",
+        "Idiomas: cuatro lenguas 'nativas'",
+        "Varsovia · remoto"
+      ] }
+    ],
+    dilemmas: [
+      { text: "El candidato perfecto aparece el primer día. ¿Cierras el proceso?",
+        opts: ["Verifico 2–3 datos clave primero. Luego presento.", "Lo presento ya — no vaya a escaparse."] },
+      { text: "Un ex-empleado escribe en LinkedIn que en tu cliente 'el management es un desastre'.",
+        opts: ["Lo contrasto con varias fuentes antes de concluir.", "Lo ignoro — es solo una opinión."] },
+      { text: "Foto perfecta, universidad top… pero dos huecos de empleo en el CV.",
+        opts: ["Pregunto por ellos con respeto, sin presuponer nada.", "Con ese perfil, los huecos no importan."] },
+      { text: "Dos candidatos casi idénticos: uno tuyo, otro de otra agencia. El cliente pregunta: 'el tuyo es mejor, ¿no?'.",
+        opts: ["Te presento los datos de ambos — decides tú.", "Claro, el mío."] },
+      { text: "El cliente presiona: 'fírmalo hoy o mañana firma con la competencia'. Quedan 12 horas.",
+        opts: ["Verifico lo clave y preparo la llamada, con calma.", "Lo llamo ya y lo empujo."] },
+      { text: "Descubres que tu candidato infló su salario actual un 30 %.",
+        opts: ["Se lo planteo con hechos, sin acusar.", "Nadie lo sabrá — cierro y cobro."] }
+    ]
+  },
+  en: {
+    cards: [
+      { name: "Tomasz Lis", flag: 0, rows: [
+        "Data Engineer · Allegro · 2019–2015",
+        "Skills: PySpark, Kafka, Airflow",
+        "Computer Science · Warsaw Tech · 2014",
+        "Warsaw · hybrid"
+      ] },
+      { name: "Anna Wójcik", flag: 1, rows: [
+        "Product Manager · 8 years of experience",
+        "Graduated: 2020 · Executive MBA",
+        "Tools: roadmap, SQL, Figma",
+        "Kraków · remote"
+      ] },
+      { name: "Piotr Zieliński", flag: 2, rows: [
+        "CTO at a 5-person startup",
+        "Strengths: strategy, fundraising, Kubernetes",
+        "Contact: piotr.zielinski(at)example.com",
+        "Berlin · open to relocate"
+      ] },
+      { name: "Magda Kowalska", flag: 1, rows: [
+        "QA Automation Senior",
+        "Skills: Selenium, Cypress, 'manual automated testing'",
+        "ISTQB · 2016",
+        "Gdańsk · hybrid"
+      ] },
+      { name: "Jakub Kaczmarek", flag: 2, rows: [
+        "Lead Developer · 2021–2024",
+        "Stack: Java, Kotlin, Spring",
+        "Availability: immediate · 3-month notice period",
+        "Wrocław · hybrid"
+      ] },
+      { name: "Ewa Sadowska", flag: 2, rows: [
+        "IT Recruiter · 6 years",
+        "Sourcing: X-Ray, boolean, ATS",
+        "Languages: four 'native' languages",
+        "Warsaw · remote"
+      ] }
+    ],
+    dilemmas: [
+      { text: "The perfect candidate shows up on day one. Do you close the process?",
+        opts: ["Verify 2–3 key facts first. Then present.", "Present them now — before they slip away."] },
+      { text: "An ex-employee posts on LinkedIn that your client's 'management is a disaster'.",
+        opts: ["Cross-check several sources before concluding.", "Ignore it — it's just an opinion."] },
+      { text: "Perfect photo, top university… but two employment gaps on the CV.",
+        opts: ["Ask about them respectfully, assuming nothing.", "With that profile, gaps don't matter."] },
+      { text: "Two nearly identical candidates: yours, and one from another agency. The client asks: 'yours is better, right?'",
+        opts: ["Here's the data on both — you decide.", "Of course, mine."] },
+      { text: "The client pushes: 'sign him today or the competition gets him tomorrow'. 12 hours left.",
+        opts: ["Verify the essentials and prepare the call — calmly.", "Call now and push it through."] },
+      { text: "You discover your candidate inflated their current salary by 30%.",
+        opts: ["Address it with facts, without accusing.", "Nobody will know — close and collect."] }
+    ]
+  }
+};
+
+const pgPumpBtn = document.getElementById("pg-pump");
+const pgBankBtn = document.getElementById("pg-bank");
+
+function pgShow(panel) {
+  ["pg-intro", "pg-signal", "pg-dilemma", "pg-hunch", "pg-result"].forEach(id => {
+    document.getElementById(id).classList.add("hidden");
+  });
+  document.getElementById(panel).classList.remove("hidden");
+}
+
+function pgClearTimers() { PG.timers.forEach(clearTimeout); PG.timers = []; }
+
+function pgProgress(elId, idx, total) {
+  const el = document.getElementById(elId);
+  el.innerHTML = "";
+  for (let i = 0; i < total; i++) {
+    const dot = document.createElement("span");
+    dot.className = "pg-dot" + (i < idx ? " done" : "");
+    el.appendChild(dot);
+  }
+}
+
+function pgRunTimer(barId, seconds, onDone) {
+  const bar = document.getElementById(barId);
+  bar.style.transition = "none";
+  bar.style.width = "100%";
+  void bar.offsetWidth;
+  bar.style.transition = "width " + seconds + "s linear";
+  bar.style.width = "0%";
+  PG.timers.push(setTimeout(onDone, seconds * 1000));
+}
+
+function startPrologue() {
+  PG.ojo = 0; PG.temple = 0; PG.banked = 0;
+  PG.sIdx = 0; PG.dIdx = 0; PG.hCand = 0; PG.hPumps = 0;
+  PG.radarDone = false; PG.lastScores = null; PG.archetype = null;
+  preloadClip("prologue");
+  showScreen("scene-prologue");
+  pgShow("pg-intro");
+}
+
+/* --- 1 · Señal --- */
+document.getElementById("pg-start").addEventListener("click", pgStartSignal);
+
+function pgStartSignal() {
+  PG.sIdx = 0;
+  pgShow("pg-signal");
+  pgNextCard();
+}
+
+function pgNextCard() {
+  const cards = PROLOGUE[lang].cards;
+  if (PG.sIdx >= cards.length) { pgClearTimers(); pgStartDilemma(); return; }
+  const card = cards[PG.sIdx];
+  pgProgress("pg-signal-progress", PG.sIdx, cards.length);
+  document.getElementById("pg-signal-feedback").textContent = "";
+  const box = document.getElementById("pg-card");
+  box.innerHTML = "";
+  const name = document.createElement("p");
+  name.className = "pg-card-name";
+  name.textContent = card.name;
+  box.appendChild(name);
+  card.rows.forEach((row, i) => {
+    const r = document.createElement("button");
+    r.type = "button";
+    r.className = "pg-card-row";
+    r.textContent = row;
+    r.addEventListener("click", () => pgSignalAnswer(i, card.flag, r));
+    box.appendChild(r);
+  });
+  pgRunTimer("pg-signal-timer", 5, () => pgSignalAnswer(-1, card.flag, null));
+}
+
+function pgSignalAnswer(picked, flag, btn) {
+  pgClearTimers();
+  document.querySelectorAll("#pg-card .pg-card-row").forEach((el, i) => {
+    el.disabled = true;
+    if (i === flag) el.classList.add("reveal");
+  });
+  const fb = document.getElementById("pg-signal-feedback");
+  if (picked === flag) {
+    PG.ojo++;
+    if (btn) btn.classList.add("hit");
+    fb.textContent = t("signalHit");
+  } else {
+    if (btn) btn.classList.add("miss");
+    fb.textContent = t("signalMiss");
+  }
+  PG.sIdx++;
+  PG.timers.push(setTimeout(pgNextCard, 1100));
+}
+
+/* --- 2 · Decisión relámpago (stealth: no revelamos qué era la buena) --- */
+function pgStartDilemma() {
+  PG.dIdx = 0;
+  pgShow("pg-dilemma");
+  pgNextDilemma();
+}
+
+function pgNextDilemma() {
+  const list = PROLOGUE[lang].dilemmas;
+  if (PG.dIdx >= list.length) { pgClearTimers(); pgStartHunch(); return; }
+  const d = list[PG.dIdx];
+  pgProgress("pg-dilemma-progress", PG.dIdx, list.length);
+  document.getElementById("pg-dilemma-feedback").textContent = "";
+  document.getElementById("pg-dilemma-text").textContent = d.text;
+  const opts = document.getElementById("pg-dilemma-options");
+  opts.innerHTML = "";
+  const order = Math.random() < .5 ? [0, 1] : [1, 0];
+  order.forEach(oi => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "option";
+    btn.textContent = d.opts[oi];
+    btn.addEventListener("click", () => pgDilemmaAnswer(oi === 0, btn));
+    opts.appendChild(btn);
+  });
+  pgRunTimer("pg-dilemma-timer", 10, () => pgDilemmaAnswer(null, null));
+}
+
+function pgDilemmaAnswer(isGood, btn) {
+  pgClearTimers();
+  document.querySelectorAll("#pg-dilemma-options .option").forEach(el => { el.disabled = true; });
+  if (btn) btn.classList.add("chosen");
+  if (isGood) PG.temple++;
+  else if (isGood === null) document.getElementById("pg-dilemma-feedback").textContent = t("dilemmaTimeup");
+  PG.dIdx++;
+  PG.timers.push(setTimeout(pgNextDilemma, 900));
+}
+
+/* --- 3 · La corazonada (riesgo, tipo BART) --- */
+function pgStartHunch() {
+  PG.hCand = 0; PG.hPumps = 0; PG.banked = 0;
+  pgShow("pg-hunch");
+  pgHunchCandidate();
+}
+
+function pgHunchLock(v) { pgPumpBtn.disabled = v; pgBankBtn.disabled = v; }
+
+function pgHunchCandidate() {
+  PG.hPumps = 0;
+  pgHunchLock(false);
+  pgProgress("pg-hunch-progress", PG.hCand, PG_CANDIDATES.length);
+  document.getElementById("pg-cand-name").textContent = "📁 " + PG_CANDIDATES[PG.hCand] + " · " + (PG.hCand + 1) + "/" + PG_CANDIDATES.length;
+  document.getElementById("pg-hunch-status").textContent = "";
+  pgUpdateQuality();
+}
+
+function pgUpdateQuality() {
+  document.getElementById("pg-quality").textContent = t("hunchQuality").replace("{n}", PG.hPumps);
+}
+
+function pgHunchAdvance() {
+  pgHunchLock(true);
+  PG.hCand++;
+  PG.timers.push(setTimeout(() => {
+    if (PG.hCand >= PG_CANDIDATES.length) pgShowRadar();
+    else pgHunchCandidate();
+  }, 1500));
+}
+
+pgPumpBtn.addEventListener("click", () => {
+  if (PG.hPumps >= 6 || pgPumpBtn.disabled) return;
+  if (Math.random() < PG_RISK[PG.hPumps]) {
+    document.getElementById("pg-hunch-status").textContent = t("hunchLost");
+    pgHunchAdvance();
+  } else {
+    PG.hPumps++;
+    pgUpdateQuality();
+    if (PG.hPumps >= 6) {
+      PG.banked += 6;
+      document.getElementById("pg-hunch-status").textContent = t("hunchBanked") + " (6/6)";
+      pgHunchAdvance();
+    }
+  }
+});
+
+pgBankBtn.addEventListener("click", () => {
+  if (pgBankBtn.disabled) return;
+  PG.banked += PG.hPumps;
+  document.getElementById("pg-hunch-status").textContent = t("hunchBanked") + " (" + PG.hPumps + "/6)";
+  pgHunchAdvance();
+});
+
+/* --- Resultado: radar + arquetipo + gancho --- */
+function pgScores() {
+  const ojo = Math.round(PG.ojo / PROLOGUE[lang].cards.length * 100);
+  const temple = Math.round(PG.temple / PROLOGUE[lang].dilemmas.length * 100);
+  const apetito = Math.min(100, Math.round(PG.banked / PG_OPTIMAL_BANK * 100));
+  return { ojo, temple, apetito };
+}
+
+function pgArchetypeKey(s) {
+  const max = Math.max(s.ojo, s.temple, s.apetito);
+  const min = Math.min(s.ojo, s.temple, s.apetito);
+  if (max - min <= 15) return "archBalanced";
+  if (s.ojo === max) return "archOjo";
+  if (s.temple === max) return "archTemple";
+  return "archApetito";
+}
+
+function pgRadarSVG(s) {
+  const cx = 160, cy = 140, r = 100;
+  const angles = [-90, 30, 150];
+  const P = (i, val) => {
+    const rad = angles[i] * Math.PI / 180, rr = r * val / 100;
+    return [cx + rr * Math.cos(rad), cy + rr * Math.sin(rad)];
+  };
+  const ring = f => [0, 1, 2].map(i => P(i, f * 100).map(v => v.toFixed(1)).join(",")).join(" ");
+  const ends = [0, 1, 2].map(i => P(i, 100));
+  const data = [s.ojo, s.temple, s.apetito].map((v, i) => P(i, v).map(x => x.toFixed(1)).join(",")).join(" ");
+  return `<svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg" role="img" class="pg-radar-svg">
+<g fill="rgba(31,92,61,.18)" stroke="#2e7d54" stroke-width="1">
+<polygon points="${ring(.34)}"/><polygon points="${ring(.67)}"/><polygon points="${ring(1)}"/>
+</g>
+<g stroke="#1f5c3d" stroke-width="1">
+${ends.map(e => `<line x1="${cx}" y1="${cy}" x2="${e[0].toFixed(1)}" y2="${e[1].toFixed(1)}"/>`).join("")}
+</g>
+<polygon points="${data}" fill="rgba(212,175,55,.30)" stroke="#d4af37" stroke-width="2"/>
+<text x="${cx}" y="${cy - r - 10}" class="rl">🦅 ${t("radarOjo")} · ${s.ojo}</text>
+<text x="${ends[1][0].toFixed(1)}" y="${ends[1][1].toFixed(1) + 22}" class="rl" text-anchor="start">⚖️ ${t("radarTemple")} · ${s.temple}</text>
+<text x="${ends[2][0].toFixed(1)}" y="${ends[2][1].toFixed(1) + 22}" class="rl" text-anchor="end">🎯 ${t("radarApetito")} · ${s.apetito}</text>
+</svg>`;
+}
+
+function pgShowRadar() {
+  pgClearTimers();
+  const s = pgScores();
+  PG.lastScores = s;
+  PG.archetype = pgArchetypeKey(s);
+  PG.radarDone = true;
+  pgShow("pg-result");
+  document.getElementById("pg-radar").innerHTML = pgRadarSVG(s);
+  document.getElementById("pg-archetype").textContent = t(PG.archetype);
+  const box = document.getElementById("pg-audio-box");
+  box.dataset.audio = "prologue";
+  if (!audioAutoplayed.has("prologue")) {
+    audioAutoplayed.add("prologue");
+    playClip("prologue");
+  }
+}
+
+document.getElementById("pg-continue").addEventListener("click", () => {
+  preloadClip("act1");
+  showScreen("scene-act1");
+});
 
 /* ============ ACTO 2 ============ */
 const ACT2_OPTIONS = I18N.pl.options1.map((_, i) => i);
@@ -675,278 +1190,3 @@ function addBubble(text, who, score) {
     const s = document.createElement("span");
     s.className = "msg-score";
     s.textContent = `★ ${score}/10`;
-    div.appendChild(s);
-  }
-  chatLog.appendChild(div);
-  chatLog.scrollTop = chatLog.scrollHeight;
-}
-
-function detectMarekTopic(text) {
-  const a = " " + text.toLowerCase() + " ";
-  for (const tp of MAREK[lang].topics) if (tp.rx.test(a)) return tp;
-  return null;
-}
-
-function moodOpener() {
-  if (marekMood >= 72) return pickFrom(MAREK[lang].warm);
-  if (marekMood < 34) return pickFrom(MAREK[lang].cold);
-  return "";
-}
-
-async function demoCandidateReply(text) {
-  const tp = detectMarekTopic(text);
-  let reply, delta = 0, isRepeat = false;
-
-  if (text.trim().length < 12) delta -= 10;          // mensaje mínimo = Marek se enfría
-  if (!text.includes("?")) delta -= 4;
-  if (text.length >= 20 && text.includes("?")) delta += 6;
-
-  if (tp) {
-    if (marekAsked.includes(tp.id)) {
-      reply = pickFrom(MAREK[lang].repeat);
-      isRepeat = true;
-      delta -= 4;
-    } else {
-      reply = pickFrom(tp.replies);
-      marekAsked.push(tp.id);
-      delta += 10;                                    // pregunta con tema = Marek se abre
-    }
-  } else {
-    reply = pickFrom(MAREK[lang].generic);
-    if (text.length >= 25) delta += 2;
-  }
-  marekMood = Math.max(0, Math.min(100, marekMood + delta));
-
-  await addCandidateBubble(moodOpener() + reply);
-
-  // Espontaneidad: a veces suelta algo extra por su cuenta
-  if (tp && !isRepeat && marekMood >= 55 && Math.random() < 0.35) {
-    await addCandidateBubble(pickFrom(MAREK[lang].bonus));
-  }
-}
-
-chatInput.addEventListener("input", () => {
-  document.getElementById("chat-count").textContent = chatInput.value.length;
-});
-
-function startAct3() {
-  chatLog.innerHTML = "";
-  msgCount = 0;
-  answers.act3 = [];
-  marekReset();
-  document.getElementById("chat-count").textContent = "0";
-  document.getElementById("msg-count").textContent = "0";
-  document.getElementById("act3-finish").classList.add("hidden");
-  document.getElementById("chat-send").disabled = false;
-  addBubble(t("candidateGreeting"), "them");
-  showScreen("scene-act3");
-  setTimeout(() => { addCandidateBubble(pickFrom(MAREK[lang].icebreakers)); }, 1500);
-}
-
-document.getElementById("chat-send").addEventListener("click", async () => {
-  const text = chatInput.value.trim();
-  if (!text || msgCount >= MAX_CHAT_MSGS) return;
-  msgCount++;
-  document.getElementById("msg-count").textContent = msgCount;
-  addBubble(text, "me");
-  chatInput.value = "";
-  document.getElementById("chat-count").textContent = "0";
-  const sendBtn = document.getElementById("chat-send");
-  sendBtn.disabled = true;
-  const score10 = await gradeMessage(text);
-  answers.act3.push(score10 / 10);
-  addBubble(text, "me", score10);
-  await candidateReply(text);
-  if (msgCount >= MAX_CHAT_MSGS) {
-    document.getElementById("act3-finish").classList.remove("hidden");
-  }
-  sendBtn.disabled = false;
-});
-
-document.getElementById("act3-finish").addEventListener("click", () => {
-  preloadSceneImg("assets/img/storm-city.svg");
-  preloadClip("act4");
-  renderAct4();
-  showScreen("scene-act4");
-});
-
-async function postJson(url, payload, timeoutMs) {
-  const ctrl = new AbortController();
-  const timer = setTimeout(() => ctrl.abort(), timeoutMs);
-  try {
-    const resp = await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-      signal: ctrl.signal
-    });
-    if (!resp.ok) throw new Error("bad status");
-    return await resp.json();
-  } finally { clearTimeout(timer); }
-}
-
-async function gradeMessage(text) {
-  if (CONFIG.DEMO_MODE) {
-    await new Promise(r => setTimeout(r, 700));
-    const a = text.toLowerCase();
-    let score = 2;
-    if (text.length >= 20) score += 2;
-    if (a.includes("?")) score += 2;
-    const kw = ["cuántos", "cuantas", "cuánto", "ile", "equipo", "zespół", "qué hiciste", "co zrobiłeś", "cyfr", "liczb", "wynik", "rezultat", "jak ", "co ", "team", "numbers", "result", "scope", "zakres", "role", "rola", "rolę", "lead", "dlaczego", "por qué", "why", "months", "miesięcy", "meses"];
-    score += Math.min(4, kw.filter(k => a.includes(k)).length);
-    return Math.max(0, Math.min(10, score));
-  }
-  try {
-    const data = await postJson(CONFIG.API_ENDPOINT, { answer: text, questionId: "interview-msg", lang }, 15000);
-    return Math.max(0, Math.min(10, data.score / 10));
-  } catch {
-    return 5;
-  }
-}
-
-async function candidateReply(text) {
-  if (CONFIG.DEMO_MODE) { await demoCandidateReply(text); return; }
-  typingEl.classList.remove("hidden");
-  let reply;
-  try {
-    const data = await postJson(CONFIG.CANDIDATE_ENDPOINT, { message: text, lang }, 15000);
-    reply = data.reply || "…";
-  } catch { reply = "…"; }
-  typingEl.classList.add("hidden");
-  addBubble(reply, "them");
-}
-
-/* ============ ACTO 4 ============ */
-function renderAct4() {
-  const container = document.getElementById("act4-options");
-  container.innerHTML = "";
-  t("options4").forEach((opt, idx) => {
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "option";
-    btn.innerHTML = `<span class="opt-letter">${"abcd"[idx]})</span>${opt}`;
-    btn.addEventListener("click", () => answerAct4(idx));
-    container.appendChild(btn);
-  });
-  document.getElementById("act4-reply").classList.add("hidden");
-}
-
-function answerAct4(idx) {
-  const correct = idx === 1;
-  answers.act4 = correct ? 1 : 0;
-  feedbacks.act4 = t("act4Feedback") + " " + (correct ? t("feedbackCorrect") : t("feedbackWrong"));
-  document.querySelectorAll("#act4-options .option").forEach((el, i) => {
-    el.disabled = true;
-    if (i === 1) el.classList.add("correct");
-    else if (i === idx) el.classList.add("wrong");
-  });
-  document.getElementById("act4-reply-text").textContent = feedbacks.act4;
-  document.getElementById("act4-reply").classList.remove("hidden");
-  document.getElementById("act4-next").onclick = () => {
-    preloadSceneImg("assets/img/dawn-skyline.svg");
-    preloadClip("epilogue");
-    showEpilogue();
-  };
-}
-
-/* ============ EPÍLOGO ============ */
-function computeTotal() {
-  const act3Avg = answers.act3.length ? answers.act3.reduce((a, b) => a + b, 0) / answers.act3.length : 0;
-  return Math.round((answers.act2 || 0) * 35 + act3Avg * 35 + (answers.act4 || 0) * 30);
-}
-
-function rankFor(score) {
-  if (score < 50) return 0;
-  if (score < 70) return 1;
-  if (score < 85) return 2;
-  return 3;
-}
-
-/* La carta del veredicto reacciona a si descubriste el secreto de Marek */
-function demoLetterText() {
-  const found = marekAsked.includes("team") || marekAsked.includes("numbers") || marekAsked.includes("lead");
-  return t("demoLetter") + " " + t(found ? "letterCaught" : "letterMissed");
-}
-
-async function showEpilogue() {
-  showScreen("scene-epilogue");
-  const total = computeTotal();
-  document.getElementById("result-score").textContent = total;
-  document.getElementById("result-rank").textContent = t("levelNames")[rankFor(total)];
-  const fb = document.getElementById("result-feedback");
-  fb.innerHTML = "";
-  const act3Avg = answers.act3.length ? Math.round(answers.act3.reduce((a, b) => a + b, 0) / answers.act3.length * 100) : 0;
-  [["feedbackTitle1", feedbacks.act2],
-   ["feedbackTitle2", `★ ${act3Avg}/100`],
-   ["feedbackTitle3", feedbacks.act4]].forEach(([titleKey, text]) => {
-    const div = document.createElement("div");
-    div.className = "result-item";
-    div.innerHTML = `<span class="ri-title">${t(titleKey)}</span>${text}`;
-    fb.appendChild(div);
-  });
-  document.getElementById("cta-link").href = CONFIG.CTA_URL;
-  const letterEl = document.getElementById("verdict-letter");
-  letterEl.innerHTML = '<div class="spinner inline"></div>';
-  let letter;
-  if (CONFIG.DEMO_MODE) {
-    await new Promise(r => setTimeout(r, 800));
-    letter = demoLetterText();
-  } else {
-    try {
-      const data = await postJson(CONFIG.LETTER_ENDPOINT, { score: total, rank: t("levelNames")[rankFor(total)], lang }, 15000);
-      letter = data.letter || demoLetterText();
-    } catch { letter = demoLetterText(); }
-  }
-  letterEl.textContent = "";
-  letterEl.classList.add("typing");
-  let li = 0;
-  const tw = setInterval(() => {
-    li++;
-    letterEl.textContent = letter.slice(0, li);
-    if (li >= letter.length) { clearInterval(tw); letterEl.classList.remove("typing"); }
-  }, 16);
-  sendLead(total);
-}
-
-document.getElementById("btn-copy").addEventListener("click", async () => {
-  const text = t("shareText").replace("{score}", computeTotal()).replace("{url}", window.location.href);
-  const status = document.getElementById("copy-status");
-  try { await navigator.clipboard.writeText(text); status.textContent = t("copied"); }
-  catch { status.textContent = t("copyFallback").replace("{text}", text); }
-});
-
-/* ============ Lead (header corregido, intacto) ============ */
-function sendLead(total) {
-  const payload = {
-    name: document.getElementById("input-name").value.trim(),
-    email: emailInput.value.trim().toLowerCase(),
-    score: total,
-    act2: answers.act2,
-    act3_msgs: answers.act3.map(s => Math.round(s * 100)),
-    act4: answers.act4,
-    consent_privacy: privacyChk.checked,
-    consent_marketing: document.getElementById("consent-marketing").checked,
-    lang,
-    timestamp: new Date().toISOString()
-  };
-  fetch(CONFIG.LEAD_ENDPOINT, {
-    method: "POST",
-    mode: "no-cors",
-    headers: { "Content-Type": "text/plain;charset=UTF-8" },
-    body: JSON.stringify(payload)
-  }).catch(() => {});
-}
-
-/* ============ Modal RGPD ============ */
-document.getElementById("open-privacy").addEventListener("click", () => {
-  document.getElementById("privacy-modal").classList.remove("hidden");
-});
-document.getElementById("close-privacy").addEventListener("click", () => {
-  document.getElementById("privacy-modal").classList.add("hidden");
-});
-document.getElementById("privacy-modal").addEventListener("click", e => {
-  if (e.target.id === "privacy-modal") e.currentTarget.classList.add("hidden");
-});
-
-applyLang();
-renderAct2();

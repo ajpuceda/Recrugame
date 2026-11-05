@@ -1,8 +1,8 @@
 // Genera TODOS los clips de audio del juego, en 3 idiomas (pl / es / en).
 // Uso (Windows CMD):
 //   set MISTRAL_API_KEY=tu_clave
-//   node tools/gen-audio.js          -> genera los 3 idiomas (15 clips)
-//   node tools/gen-audio.js es       -> solo español (5 clips)
+//   node tools/gen-audio.js          -> genera los 3 idiomas (18 clips)
+//   node tools/gen-audio.js es       -> solo español (6 clips)
 // La clave NUNCA se escribe en el código ni se commitea.
 //
 // Voces (librería Mistral, modelo voxtral-mini-tts-3-0):
@@ -29,6 +29,11 @@ const VOICES = { pl: "voice_3154", es: "voice_483", en: "gb_jane_neutral" };
 const VOICE_MAREK_EN = "gb_oliver_neutral";
 
 const SCRIPTS = {
+  prologue: { // Narrador: la señal del radar conecta el Prólogo con el Acto 1
+    pl: "Twój radar wyłapał sygnał w szumie: Marek, Data Engineer, Warszawa. Za chwilę zadzwoni telefon.",
+    es: "Tu radar ha detectado una señal en el ruido: Marek, Data Engineer, Varsovia. En unos segundos sonará el teléfono.",
+    en: "Your radar just caught a signal in the noise: Marek, Data Engineer, Warsaw. The phone is about to ring."
+  },
   act1: { // Anna: el brief nocturno (Acto 1)
     pl: "Cześć! Potrzebuję senior Data Engineera ze Sparkiem dla Warszawy, na trzy tygodnie — a LinkedIn jest pusty. Znajdziesz kogoś?",
     es: "¡Hola! Necesito un Data Engineer senior con Spark para Varsovia, en tres semanas — y LinkedIn está vacío. ¿Encontrarás a alguien?",

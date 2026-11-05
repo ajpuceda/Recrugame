@@ -265,3 +265,54 @@ body {
 /* Burbujas del chat */
 .bubble { animation: bubblePop .35s ease both; }
 @keyframes bubblePop { from { opacity: 0; transform: translateY(8px) scale(.97); } to { opacity: 1; transform: none; } }
+
+/* ===================== v4 · PRÓLOGO · EL RADAR ===================== */
+
+.pg-panel { margin-bottom: 8px; }
+.pg-title { font-size: 20px; color: var(--gold-light); margin-bottom: 10px; }
+.pg-hint { font-size: 14px; color: var(--text-dim); line-height: 1.5; margin-bottom: 14px; }
+.pg-intro-text { font-size: 15px; line-height: 1.6; color: var(--text-dim); margin-bottom: 20px; }
+
+/* Progreso de puntos */
+.pg-progress { display: flex; gap: 7px; margin-bottom: 12px; }
+.pg-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--green); flex-shrink: 0; transition: background .3s ease; }
+.pg-dot.done { background: var(--gold); }
+
+/* Barra de tiempo */
+.timer-bar { height: 4px; background: rgba(31,92,61,.6); border-radius: 99px; overflow: hidden; margin-bottom: 16px; }
+.timer-bar i { display: block; height: 100%; width: 100%; background: var(--gold); border-radius: 99px; }
+
+/* Ficha de candidato (Señal) */
+.pg-card { background: rgba(14,36,26,.92); border: 1px solid var(--green); border-radius: var(--radius); padding: 14px; }
+.pg-card-name { font-weight: 700; font-size: 15px; margin-bottom: 10px; color: var(--gold-light); }
+.pg-card-row {
+  display: block; width: 100%; text-align: left; padding: 10px 12px; margin-bottom: 8px;
+  background: var(--bg-panel); color: var(--text); border: 1px solid var(--green);
+  border-radius: 8px; font-size: 14px; line-height: 1.4; cursor: pointer;
+  transition: border-color .2s ease, background .2s ease;
+}
+.pg-card-row:hover:not(:disabled) { border-color: var(--gold); }
+.pg-card-row:disabled { cursor: default; opacity: .9; }
+.pg-card-row.hit { border-color: var(--gold-light); background: rgba(212,175,55,.2); }
+.pg-card-row.miss { border-color: var(--danger); background: rgba(224,102,102,.16); }
+.pg-card-row.reveal { border-color: var(--gold); box-shadow: 0 0 10px rgba(212,175,55,.3); }
+
+/* Feedback genérico del prólogo */
+.pg-feedback { min-height: 22px; margin-top: 12px; font-size: 14px; color: var(--gold-light); font-style: italic; }
+
+/* Dilemas */
+.pg-dilemma-text { font-size: 16px; line-height: 1.5; margin-bottom: 14px; }
+.option.chosen { border-color: var(--gold-light); background: rgba(212,175,55,.18); }
+
+/* La corazonada */
+.pg-dossier { background: rgba(14,36,26,.92); border: 1px solid var(--green); border-radius: var(--radius); padding: 14px; margin-bottom: 14px; }
+.pg-candidate-name { font-weight: 700; font-size: 15px; margin-bottom: 6px; }
+.pg-quality { font-size: 14px; color: var(--gold-light); }
+
+/* Resultado: radar + arquetipo */
+#pg-radar { display: flex; justify-content: center; margin: 8px 0 4px; }
+.pg-radar-svg { max-width: 320px; width: 100%; height: auto; }
+.pg-radar-svg .rl { fill: #f0d060; font-size: 13px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+.pg-archetype { text-align: center; color: var(--gold); font-size: 22px; font-weight: 700; margin: 8px 0 16px; }
+#pg-audio-box { margin-bottom: 14px; }
+
